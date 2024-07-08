@@ -2,15 +2,19 @@ import  express  from 'express';
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 
-import auht from './src/routes/auth';
+import auht from './routes/auth';
+import patient from './routes/patient';
+import admin from './routes/admin';
+import doctor from './routes/doctor';
 
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/auht', auht);
-
-
+app.use('/auth', auht);
+app.use('/patient', patient);
+app.use('/doctor', doctor);
+app.use('/admin', admin);
 
 const PORT = process.env.PORT || 10101;
 
