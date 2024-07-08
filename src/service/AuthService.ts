@@ -11,6 +11,8 @@ export default class AuhtService {
                 email : login?.email,
                 rol : login?.rol
             }
+            console.log(login);
+            
             if (login.logged) {
                 return {
                     logged: login.logged,

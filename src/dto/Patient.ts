@@ -1,5 +1,5 @@
 // PacienteDto.ts
-export default class PacienteDto {
+export default class PatientDto {
     private _documentoPac: number;
     private _tipoDoc: string;
     private _nombre: string;
