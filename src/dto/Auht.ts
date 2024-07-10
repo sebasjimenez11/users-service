@@ -1,11 +1,11 @@
 export default class AuhtDto {
-    private _document ?: number;
+    private _document ?: string;
     private _email ?: string;
     private _password : string;
 
     constructor(
         password: string,
-        document?: number,
+        document?: string,
         email?: string
     ){
         this._document = document;
@@ -13,11 +13,11 @@ export default class AuhtDto {
         this._password = password;
     }
 
-    get document(): number{
+    get document(): string{
         return this._document;
     }
 
-    set document(document:number){
+    set document(document:string){
         this._document = document;
     }
 

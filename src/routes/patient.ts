@@ -3,7 +3,7 @@ import PatientContorller from "../controller/PatientController";
 
 const router = Router();
 
-router.post('/register', PatientContorller.register);
+router.post('/', PatientContorller);
 router.get('/');
 router.patch('/');
 router.put('/');

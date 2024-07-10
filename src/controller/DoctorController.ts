@@ -1,10 +1,23 @@
 import { Request,Response } from "express";
+import doctorDto from "../dto/Doctor";
+import doctorService from "../service/doctorService";
 
-export default class DoctorController {
+const service = new doctorService();
+const controller = async (req:Request,res:Response)=>{
+    try{
+        const {tarjetaProf,documento,nombre,apellido,rol,email,foto,password,codigoEspc} = req.body;
+console.log(new doctorDto(tarjetaProf,documento,nombre,apellido,rol,email,foto,password,codigoEspc));
 
-    static async register(req:Request,res:Response){
-        res.status(200).json({
-            message: "hola"
-        })
+        const registerService = await service.register(new doctorDto(tarjetaProf,documento,nombre,apellido,rol,email,foto,password,codigoEspc));
+        
+        if(registerService.register){
+            return res.status(202).json({status:registerService.status});
+        }else{
+            return res.status(404).json({status:registerService.status});
+        }
+    }catch{
+        res.status(500).json({status: "Error interno en el servidor"});
     }
 }
+
+export default controller;

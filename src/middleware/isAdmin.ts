@@ -4,7 +4,7 @@ type Rol = 'admin' | 'patient' | 'doctor';
 
 const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const rol: Rol = req.body.rol;
+        const rol: Rol = req.body.tokenRol;
         if (rol === "admin") {
             next();
         } else {

@@ -2,17 +2,17 @@ import PatientDto from "../dto/Patient";
 import PatientRepository from "../repository/PatientRepository";
 
 export default class patientService {
-    static async registerPatient(patient: PatientDto) {
+    async registerPatient(patient: PatientDto) {
         return await PatientRepository.Register(patient);
     }
 
-    static async getPatientById() {}
+    async getPatientById() {}
 
-    static async getAllPatients() {}
+    async getAllPatients() {}
 
-    static async updatePatientDetails() {}
+    async updatePatientDetails() {}
 
-    static async changePatientPassword() {}
+    async changePatientPassword() {}
 
-    static async deactivatePatient() {}
+    async deactivatePatient() {}
 }

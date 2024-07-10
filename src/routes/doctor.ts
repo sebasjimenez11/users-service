@@ -5,7 +5,7 @@ import isAdmin from "../middleware/isAdmin";
 
 const router = Router();
 
-router.post('/register', validateToken,isAdmin, DoctorController.register);
+router.post('/', validateToken,isAdmin, DoctorController);
 router.get('/');
 router.patch('/');
 router.put('/');

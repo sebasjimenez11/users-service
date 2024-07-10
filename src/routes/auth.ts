@@ -1,9 +1,8 @@
 import { Router } from "express";
-import AuhtContorller from "../controller/AuhController";
+import AuhtController from "../controller/AuhtController";
 
-const auht = new AuhtContorller()
 const router = Router();
 
-router.post("/", auht.Auht)
+router.post("/", AuhtController)
 
 export default router;

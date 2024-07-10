@@ -1,6 +1,7 @@
 // DoctorDto.ts
 export default class DoctorDto {
     private _tarjetaProf: string;
+    private _documento: number;
     private _nombre: string;
     private _apellido: string;
     private _rol: string;
@@ -9,11 +10,11 @@ export default class DoctorDto {
     private _disponibilidad?: string;
     private _foto: Blob;
     private _password: string;
-    private _fechaReg?: Date;
     private _codigoEspc: number;
 
     constructor(
         tarjetaProf: string,
+        documento: number,
         nombre: string,
         apellido: string,
         rol: string,
@@ -23,9 +24,9 @@ export default class DoctorDto {
         codigoEspc: number,
         estado?: string,
         disponibilidad?: string,
-        fechaReg?: Date
     ) {
         this._tarjetaProf = tarjetaProf;
+        this._documento = documento;
         this._nombre = nombre;
         this._apellido = apellido;
         this._rol = rol;
@@ -35,15 +36,22 @@ export default class DoctorDto {
         this._codigoEspc = codigoEspc;
         this._estado = estado;
         this._disponibilidad = disponibilidad;
-        this._fechaReg = fechaReg;
     }
-
+    
     get tarjetaProf(): string {
         return this._tarjetaProf;
     }
 
     set tarjetaProf(tarjetaProf: string) {
         this._tarjetaProf = tarjetaProf;
+    }
+
+    get documento(): number {
+        return this._documento;
+    }
+
+    set documento(documento: number) {
+        this._documento = documento;
     }
 
     get nombre(): string {
@@ -108,14 +116,6 @@ export default class DoctorDto {
 
     set password(password: string) {
         this._password = password;
-    }
-
-    get fechaReg(): Date | undefined {
-        return this._fechaReg;
-    }
-
-    set fechaReg(fechaReg: Date | undefined) {
-        this._fechaReg = fechaReg;
     }
 
     get codigoEspc(): number {
