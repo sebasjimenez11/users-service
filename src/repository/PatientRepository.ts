@@ -13,10 +13,7 @@ export default class PatientRepository {
             return {register: true,status: "user inserted correctly",}
         } catch (error) {
             console.log(error);
-            return {register: false, status: "User insertion error"}
+            return {register: false, status:error.message}
         }
     }
-
-    
-
 }

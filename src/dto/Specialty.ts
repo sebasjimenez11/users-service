@@ -1,20 +1,20 @@
 // EspecialidadDto.ts
 export default class SpecialtyDto {
-    private _codigoEspc: number;
+    private _codigoEspc: string;
     private _nombre: string;
     private _descripcion?: string;
 
-    constructor(codigoEspc: number, nombre: string, descripcion?: string) {
+    constructor(codigoEspc: string, nombre: string, descripcion?: string) {
         this._codigoEspc = codigoEspc;
         this._nombre = nombre;
         this._descripcion = descripcion;
     }
 
-    get codigoEspc(): number {
+    get codigoEspc(): string {
         return this._codigoEspc;
     }
 
-    set codigoEspc(codigoEspc: number) {
+    set codigoEspc(codigoEspc: string) {
         this._codigoEspc = codigoEspc;
     }
 

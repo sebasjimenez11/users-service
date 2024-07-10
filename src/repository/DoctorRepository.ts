@@ -26,7 +26,5 @@ export default class DoctorRepository{
             console.log(error)
             return {status: error.message, register : true}
         }
-        
-
     }
 }
