@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 import moment from 'moment';
-import { tipoDoc, formatoFecha, dominiosPermitidos } from '../constants';
+import { tipoDoc, formatoFecha, dominiosPermitidos } from '../common/constants/constants';
 
 
 const validationRegisterPatint = ()=>{

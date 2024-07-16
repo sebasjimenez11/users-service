@@ -3,23 +3,30 @@ import specialtyService from "../service/specialtyService";
 import SpecialtyDto from "../dto/Specialty";
 
 const service = new specialtyService();
-const controller = async (req:Request,res:Response):Promise<void> => {
+const controllerRegister = async (req:Request,res:Response) => {
     try {
         const {codigoEspc, nombre, descripcion} = req.body;
 
         const create = await service.create(new SpecialtyDto(codigoEspc, nombre, descripcion));
-        if(create.create){
-            res.status(202).json({message:create.status});
-        }else{
-            res.status(404).json({message:create.status});
-        }
-        
+        if(create.success){
+            return res.status(202).json({message:create.message});
+        }res.status(404).json({message:create.message}); 
     } catch (error) {
          console.log(error);
-         res.status(500).json({message: error});
-         
+         res.status(500).json({message: error.message});
     }
     
 }
 
-export default controller;
+const controllerGetAllSpecialty = async (req:Request,res:Response):Promise<void> => {
+    try{
+        const getAll = await service.getAll();
+        res.status(202).json({specialty: getAll.data});
+    }catch(error){
+        res.status(404).json({message:error.message})
+    }
+}
+
+
+
+export {controllerRegister,controllerGetAllSpecialty};

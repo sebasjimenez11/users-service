@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
 
-export default class AdminController {
+const getAdminContoller = async (req:Request,res:Response)=> {
 
-   
-    
 }
+
+export { getAdminContoller };

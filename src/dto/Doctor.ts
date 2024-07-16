@@ -10,6 +10,7 @@ export default class DoctorDto {
     private _disponibilidad?: string;
     private _foto: Blob;
     private _password: string;
+    private _valorCita: number;
     private _codigoEspc: number;
 
     constructor(
@@ -21,6 +22,7 @@ export default class DoctorDto {
         email: string,
         foto: Blob,
         password: string,
+        valorCita: number,
         codigoEspc: number,
         estado?: string,
         disponibilidad?: string,
@@ -33,6 +35,7 @@ export default class DoctorDto {
         this._email = email;
         this._foto = foto;
         this._password = password;
+        this._valorCita = valorCita;
         this._codigoEspc = codigoEspc;
         this._estado = estado;
         this._disponibilidad = disponibilidad;
@@ -124,5 +127,13 @@ export default class DoctorDto {
 
     set codigoEspc(codigoEspc: number) {
         this._codigoEspc = codigoEspc;
+    }
+
+    get valorCita():number{
+        return this._valorCita;
+    }
+
+    set valorCita(valorCita:number){
+        this.valorCita = valorCita;
     }
 }

@@ -5,6 +5,6 @@ import validationResult from "../middleware/validationResult";
 
 const router = Router();
 
-router.post("/",validateAuht(), validationResult ,AuhtController)
+router.post('/login',validateAuht(), validationResult ,AuhtController);
 
 export default router;

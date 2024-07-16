@@ -1,16 +1,22 @@
 import { Router } from "express";
-import DoctorController from "../controller/DoctorController";
+import { 
+    registerDoctorController, 
+    getAllDoctorsController, 
+    getDoctorByEmailController, 
+    getDoctorCatalogController, 
+} from "../controller/DoctorController";
+    
 import validateToken from "../middleware/verifyToken";
-import isAdmin from "../middleware/isAdmin";
 import doctorValidator  from "../middleware/validateDoctor";
 import validationResult from "../middleware/validationResult";
+import { isAdmin, isDoctor } from "../middleware/hasRole";
 
 const router = Router();
 
-router.post('/',doctorValidator(), validationResult,validateToken,isAdmin ,DoctorController);
-router.get('/');
-router.patch('/');
-router.put('/');
+router.post('/register',doctorValidator(), validationResult,validateToken,isAdmin ,registerDoctorController);
+router.get('/profile', validateToken, isDoctor, getDoctorByEmailController);
+router.get('/catalog', getDoctorCatalogController);
+router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
 
 export default router;
 

@@ -28,8 +28,9 @@ const validateToken = async (req: Request, res: Response, next: NextFunction) =>
     };
     try {
         let decoden = jwt.verify(token, process.env.JWT_SECRET as string) as payload;
+        console.log(decoden.data.rol);
         
-        req.body.email = decoden.data.email;
+        req.body.tokenEmail = decoden.data.email;
         req.body.tokenRol = decoden.data.rol;
         next();
 

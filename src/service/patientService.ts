@@ -6,7 +6,9 @@ export default class patientService {
         return await PatientRepository.Register(patient);
     }
 
-    async getPatientById() {}
+    async getPatientById() {
+        
+    }
 
     async getAllPatients() {}
 

@@ -1,13 +1,11 @@
 import { Router } from "express";
-import specialtyController from "../controller/SpecialtyController";
-import isAdmin from "../middleware/isAdmin";
+import {isAdmin} from "../middleware/hasRole";
 import validateToken from "../middleware/verifyToken";
+import { controllerGetAllSpecialty, controllerRegister } from "../controller/SpecialtyController";
 
 const router = Router();
 
-router.post('/', validateToken,isAdmin, specialtyController);
-router.get('/');
-router.patch('/');
-router.put('/');
+router.post('/create', validateToken,isAdmin, controllerRegister);
+router.get('/all', controllerGetAllSpecialty);
 
 export default router;

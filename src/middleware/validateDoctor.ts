@@ -1,5 +1,5 @@
 import { body } from 'express-validator';
-import { dominiosPermitidos } from '../constants';
+import { dominiosPermitidos } from '../common/constants/constants';
 
 const doctorValidator = () => { 
     return [
@@ -50,6 +50,12 @@ const doctorValidator = () => {
             .withMessage('La contraseña debe contener al menos una letra mayúscula')
             .matches(/[!@#$%^&*(),.?":{}|<>]/)
             .withMessage('La contraseña debe contener al menos un carácter especial'),
+        
+        body('valorCita')
+        .notEmpty()
+        .withMessage('El valor de la cita es requerido')
+        .isNumeric()
+        .withMessage('El valor de la cita debe ser numerico'),
 
         body('codigoEspc')
             .notEmpty()

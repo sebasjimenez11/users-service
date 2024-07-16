@@ -8,7 +8,7 @@ export default class PatientRepository {
         try {
             const password = await generateHash(patient.password);
             patient.password =  password;
-            await db.execute('CALL AddPaciente(?,?,?,?,?,NULL,?,NULL,?,"Activo",?)',
+            await db.execute('CALL AddPaciente(?,?,?,?,?,?,?,?)',
             [patient.documentoPac, patient.tipoDoc, patient.nombre, patient.apellido, patient.email,  patient.rol, patient.fechaNac, patient.password]);
             return {register: true,status: "user inserted correctly",}
         } catch (error) {
