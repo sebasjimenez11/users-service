@@ -1,5 +1,5 @@
 import db from "../config/configBd"
-import AuhtDto from "../dto/Auht";
+import AuhtDto from "../dto/auht/Auht";
 import bcrypt from 'bcryptjs';
 
 export default class AuhtRepository {

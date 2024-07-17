@@ -1,4 +1,4 @@
-import DoctorDto from "../dto/Doctor";
+import DoctorDto from "../dto/doctor/Doctor";
 import doctorRepository from "../repository/DoctorRepository";
 
 export default class DoctorService {
@@ -16,5 +16,9 @@ export default class DoctorService {
 
     async getDoctorCatalog () {
         return await doctorRepository.getDoctorCatalog();
+    }
+
+    async updateProfileDoctor(doctor:DoctorDto){
+
     }
 }

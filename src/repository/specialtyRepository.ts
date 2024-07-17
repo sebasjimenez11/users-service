@@ -1,5 +1,5 @@
 import db from '../config/configBd';
-import SpecialtyDto from '../dto/Specialty';
+import SpecialtyDto from '../dto/specialty/Specialty';
 
 export default class SpecialtyRepository {
 

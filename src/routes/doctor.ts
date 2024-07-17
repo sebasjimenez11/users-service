@@ -4,6 +4,7 @@ import {
     getAllDoctorsController, 
     getDoctorByEmailController, 
     getDoctorCatalogController, 
+    updateProfileDoctorContoller
 } from "../controller/DoctorController";
     
 import validateToken from "../middleware/verifyToken";
@@ -17,6 +18,7 @@ router.post('/register',doctorValidator(), validationResult,validateToken,isAdmi
 router.get('/profile', validateToken, isDoctor, getDoctorByEmailController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
+router.put('/updateProfile', validateToken, isDoctor, updateProfileDoctorContoller);
 
 export default router;
 

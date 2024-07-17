@@ -1,4 +1,4 @@
-import SpecialtyDto from "../dto/Specialty";
+import SpecialtyDto from "../dto/specialty/Specialty";
 import SpecialtyRepository from "../repository/specialtyRepository";
 
 

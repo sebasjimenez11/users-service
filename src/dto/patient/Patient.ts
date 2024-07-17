@@ -5,13 +5,9 @@ export default class PatientDto {
     private _nombre: string;
     private _apellido: string;
     private _email: string;
-    private _telefono?: string;
     private _rol: string;
-    private _direccion?: string;
     private _fechaNac: Date;
-    private _estado?: string;
     private _password: string;
-    private _fechaReg?: Date;
 
     constructor(
         documentoPac: number,
@@ -21,11 +17,7 @@ export default class PatientDto {
         email: string,
         password: string,
         fechaNac: Date,
-        rol: string,
-        telefono?: string,
-        direccion?: string,
-        estado?: string,
-        fechaReg?: Date
+        rol: string
     ) {
         this._documentoPac = documentoPac;
         this._tipoDoc = tipoDoc;
@@ -35,10 +27,6 @@ export default class PatientDto {
         this._password = password;
         this._fechaNac = fechaNac;
         this._rol = rol;
-        this._telefono = telefono;
-        this._direccion = direccion;
-        this._estado = estado;
-        this._fechaReg = fechaReg;
     }
 
     get documentoPac(): number {
@@ -81,28 +69,12 @@ export default class PatientDto {
         this._email = email;
     }
 
-    get telefono(): string | undefined {
-        return this._telefono;
-    }
-
-    set telefono(telefono: string | undefined) {
-        this._telefono = telefono;
-    }
-
     get rol(): string {
         return this._rol;
     }
 
     set rol(rol: string) {
         this._rol = rol;
-    }
-
-    get direccion(): string | undefined {
-        return this._direccion;
-    }
-
-    set direccion(direccion: string | undefined) {
-        this._direccion = direccion;
     }
 
     get fechaNac(): Date {
@@ -113,14 +85,6 @@ export default class PatientDto {
         this._fechaNac = fechaNac;
     }
 
-    get estado(): string | undefined {
-        return this._estado;
-    }
-
-    set estado(estado: string | undefined) {
-        this._estado = estado;
-    }
-
     get password(): string {
         return this._password;
     }
@@ -129,11 +93,4 @@ export default class PatientDto {
         this._password = password;
     }
 
-    get fechaReg(): Date | undefined {
-        return this._fechaReg;
-    }
-
-    set fechaReg(fechaReg: Date | undefined) {
-        this._fechaReg = fechaReg;
-    }
 }

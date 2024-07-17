@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import patientService from "../service/patientService";
-import PatientDto from "../dto/Patient";
+import PatientDto from "../dto/patient/Patient";
+import PatientUpdateDto from "../dto/patient/PatientUpdate";
 
 const service = new patientService()
-const registerPatientController = async (req:Request,res:Response)=>{
+export const registerPatientController = async (req:Request,res:Response)=>{
     try {
         const { documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol,
         } = req.body;
@@ -19,7 +20,7 @@ const registerPatientController = async (req:Request,res:Response)=>{
     }
 };
 
-const getAllPatientsController = async (req:Request,res:Response) => {
+export const getAllPatientsController = async (req:Request,res:Response) => {
     try{
         const getAllPatients = await service.getAllPatients();
         res.status(202).json({patients: getAllPatients.data});
@@ -28,7 +29,7 @@ const getAllPatientsController = async (req:Request,res:Response) => {
     }
 }
 
-const getPatientByEmailController = async (req:Request,res:Response)=> {
+export const getPatientByEmailController = async (req:Request,res:Response)=> {
     try{
         const getAllPatients = await service.getPatientByEmail(req.body.tokenEmail);
         res.status(202).json({patients: getAllPatients.data});
@@ -37,4 +38,18 @@ const getPatientByEmailController = async (req:Request,res:Response)=> {
     }
 }
 
-export {registerPatientController,getAllPatientsController,getPatientByEmailController}
+export const updateProfileDoctorController = async (req:Request,res:Response) => { 
+    try {
+        const { documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono,direccion
+        } = req.body;
+        
+        const update = await service.updateProfilePatient(new PatientUpdateDto(documentoPac,tipoDoc,nombre,apellido,email,fechaNac,telefono,direccion))
+    
+        if(update.update){
+           return res.status(200).json({status: update.status});
+        }  res.status(404).json({status : update.status});
+    
+    } catch (error) {
+        res.status(500).json({status: error})
+    }
+}

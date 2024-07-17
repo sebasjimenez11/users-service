@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 import specialtyService from "../service/specialtyService";
-import SpecialtyDto from "../dto/Specialty";
+import SpecialtyDto from "../dto/specialty/Specialty";
 
 const service = new specialtyService();
 const controllerRegister = async (req:Request,res:Response) => {

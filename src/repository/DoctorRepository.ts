@@ -1,4 +1,4 @@
-import DoctorDto from "../dto/Doctor";
+import DoctorDto from "../dto/doctor/Doctor";
 import db from "../config/configBd"
 import generateHash from "../helpers/generateHash";
 

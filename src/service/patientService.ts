@@ -1,5 +1,6 @@
-import PatientDto from "../dto/Patient";
+import PatientDto from "../dto/patient/Patient";
 import PatientRepository from "../repository/PatientRepository";
+import PatientUpdateDto from "../dto/patient/PatientUpdate";
 
 export default class patientService {
 
@@ -13,5 +14,9 @@ export default class patientService {
 
     async getPatientByEmail(email:string) {
         return await PatientRepository.getPatientByEmail(email);
+    }
+
+    async updateProfilePatient(patient: PatientUpdateDto){
+        return await PatientRepository.updateProfilePatient(patient)
     }
 }

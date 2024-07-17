@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import doctorDto from "../dto/Doctor";
+import doctorDto from "../dto/doctor/Doctor";
 import doctorService from "../service/doctorService";
 
 const service = new doctorService();
 
-const registerDoctorController = async (req: Request, res: Response) => {
+export const registerDoctorController = async (req: Request, res: Response) => {
     try {
         const { tarjetaProf, documento, nombre, apellido, rol, email, foto, password, valorCita ,codigoEspc } = req.body;
         const registerService = await service.registerDoctor(new doctorDto(tarjetaProf, documento, nombre, apellido, rol, email, foto, password, valorCita, codigoEspc));
@@ -17,7 +17,7 @@ const registerDoctorController = async (req: Request, res: Response) => {
     }
 }
 
-const getAllDoctorsController = async (req: Request, res: Response) => {
+export const getAllDoctorsController = async (req: Request, res: Response) => {
     try {
         const getAllDoctors = await service.getAllDoctors();
         return res.status(202).json({ message: getAllDoctors.message, doctors: getAllDoctors.data });
@@ -26,7 +26,7 @@ const getAllDoctorsController = async (req: Request, res: Response) => {
     }
 }
 
-const getDoctorByEmailController = async (req: Request, res: Response) => {
+export const getDoctorByEmailController = async (req: Request, res: Response) => {
     try {
         const emailDoctor = req.body.tokenEmail;
         const getByIdDoctor = await service.getDoctorById(emailDoctor);
@@ -36,7 +36,7 @@ const getDoctorByEmailController = async (req: Request, res: Response) => {
     }
 }
 
-const getDoctorCatalogController = async (req: Request, res: Response) => {
+export const getDoctorCatalogController = async (req: Request, res: Response) => {
    try {
         const getDoctorCatalog = await service.getDoctorCatalog();
         res.status(202).json({ message: getDoctorCatalog.message, catalog: getDoctorCatalog.data });
@@ -45,4 +45,10 @@ const getDoctorCatalogController = async (req: Request, res: Response) => {
    }
 }
 
-export { registerDoctorController, getAllDoctorsController, getDoctorByEmailController, getDoctorCatalogController };
+export const updateProfileDoctorContoller = async (req:Request,res:Response)=> {
+    try {
+        
+    } catch (error) {
+        
+    }
+}

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getAdminContoller } from "../controller/AdminController";
+import { getByEmailAdminContoller } from "../controller/AdminController";
 import validateToken from "../middleware/verifyToken";
 import {isAdmin} from "../middleware/hasRole";
 
 const router = Router();
 
-router.get('/profile', validateToken, isAdmin, getAdminContoller);
+router.get('/profile', validateToken, isAdmin, getByEmailAdminContoller);
 
-export default router;
+export default router;  

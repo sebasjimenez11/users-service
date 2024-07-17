@@ -1,5 +1,5 @@
 import AuhtRepository from "../repository/AuthRepository";
-import AuhtDto from "../dto/Auht";
+import AuhtDto from "../dto/auht/Auht";
 import generateToken from "../helpers/generateToken";
 
 export default class AuhtService {

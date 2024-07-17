@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import AuhtDto from "../dto/Auht";
+import AuhtDto from "../dto/auht/Auht";
 import AuhtService from "../service/authService";
 
 const controller = async (req:Request,res:Response)=>{
