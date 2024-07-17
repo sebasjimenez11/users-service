@@ -1,6 +1,7 @@
 import PatientDto from "../dto/Patient";
 import db from "../config/configBd"
 import generateHash from "../helpers/generateHash";
+import { getDoctorByEmailController } from "../controller/DoctorController";
 
 export default class PatientRepository {
 
@@ -14,6 +15,26 @@ export default class PatientRepository {
         } catch (error) {
             console.log(error);
             return {register: false, status:error.message}
+        }
+    }
+
+    static async getAllPatients(){
+        try {
+            const [rows] = await db.execute('CALL ListPacientes()');
+            return {message: '', data: rows[0]};
+        } catch (error) {
+            console.log(error);
+            return {message: error.message, data: null};
+        }
+    }
+
+    static async getPatientByEmail(email:string){
+        try {
+            const [rows] = await db.execute('CALL GetPacienteByEmail(?)',[email]);
+            return {message: '', data: rows[0][0]};
+        } catch (error) {
+            console.log(error);
+            return {message: error.message, data: null};
         }
     }
 }

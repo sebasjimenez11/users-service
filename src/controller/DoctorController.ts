@@ -29,7 +29,6 @@ const getAllDoctorsController = async (req: Request, res: Response) => {
 const getDoctorByEmailController = async (req: Request, res: Response) => {
     try {
         const emailDoctor = req.body.tokenEmail;
-        console.log(req.body.tokenEmail);
         const getByIdDoctor = await service.getDoctorById(emailDoctor);
         res.status(202).json({ message: getByIdDoctor.message, doctor: getByIdDoctor.doctor });
     } catch (error) {

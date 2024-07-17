@@ -4,7 +4,6 @@ import generateToken from "../helpers/generateToken";
 
 export default class AuhtService {
     async auht(auht:AuhtDto){
-    
         const login = await AuhtRepository.login(auht);
         if (login?.logged) {
             return {

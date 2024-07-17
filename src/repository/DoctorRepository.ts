@@ -30,8 +30,6 @@ export default class DoctorRepository{
 
     static async getDoctorById(email: string) {
         try {
-            console.log(email);
-        
             const [rows] = await db.execute("CALL GetDoctorByEmail(?)", [email]);
             return { message: 'Specialties retrieved successfully', doctor: rows[0][0] };
         } catch (error) {

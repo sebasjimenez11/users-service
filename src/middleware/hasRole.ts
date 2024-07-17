@@ -1,13 +1,11 @@
 import { NextFunction, Response, Request } from "express";
 
-type Rol = 'admin' | 'medico';
+type Rol = 'admin' | 'medico' | 'paciente';
 
 const hasRole = (roles: Rol[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const rol: Rol = req.body.tokenRol;
-            console.log(rol);
-            
+            const rol: Rol = req.body.tokenRol;  
             if (roles.includes(rol)) {
                 next();
             } else {
@@ -23,3 +21,4 @@ const hasRole = (roles: Rol[]) => {
 export const isAdminOrDoctor = hasRole(['admin', 'medico']);
 export const isDoctor = hasRole(['medico']);
 export const isAdmin = hasRole(['admin']);
+export const isPatient = hasRole(['paciente'])

@@ -21,7 +21,8 @@ const registerPatientController = async (req:Request,res:Response)=>{
 
 const getAllPatientsController = async (req:Request,res:Response) => {
     try{
-        res.status(202).json({});
+        const getAllPatients = await service.getAllPatients();
+        res.status(202).json({patients: getAllPatients.data});
     }catch(error){
         res.status(505).json({message:error.message})
     }
@@ -29,8 +30,11 @@ const getAllPatientsController = async (req:Request,res:Response) => {
 
 const getPatientByEmailController = async (req:Request,res:Response)=> {
     try{
-
-    }catch(error){}
+        const getAllPatients = await service.getPatientByEmail(req.body.tokenEmail);
+        res.status(202).json({patients: getAllPatients.data});
+    }catch(error){
+        res.status(505).json({message:error.message})
+    }
 }
 
 export {registerPatientController,getAllPatientsController,getPatientByEmailController}

@@ -1,14 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
-interface payload {
-    data: {
-    email: string,
-    rol : string
-  },
-    exp: number,
-    iat: number
-}
+import payload from '../common/interfaces/payloadValidator';
 
 const validateToken = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -27,9 +19,7 @@ const validateToken = async (req: Request, res: Response, next: NextFunction) =>
         );
     };
     try {
-        let decoden = jwt.verify(token, process.env.JWT_SECRET as string) as payload;
-        console.log(decoden.data.rol);
-        
+        let decoden = jwt.verify(token, process.env.JWT_SECRET as string) as payload; 
         req.body.tokenEmail = decoden.data.email;
         req.body.tokenRol = decoden.data.rol;
         next();
