@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import AdminService from "../service/adminservice";
+import AdminService from "../service/adminService";
 import AdminUpdateDTO from "../dto/admin/AdminUpdate";
 
 const service:AdminService = new AdminService();
