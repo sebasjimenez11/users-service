@@ -16,17 +16,13 @@ export const getByEmailAdminContoller = async (req:Request,res:Response)=> {
 
 export const updateProfileadminController = async (req:Request,res:Response)=>{
     try {
-        const { documento, nombre, apellido, email } = req.body;
-        const updateProfile = await service.updateProfileAdmin(new AdminUpdateDTO(documento, nombre, apellido, email));
+        const { tokenEmail, documento, nombre, apellido, email } = req.body;
+        const updateProfile = await service.updateProfileAdmin(new AdminUpdateDTO(tokenEmail,documento, nombre, apellido, email));
         if (updateProfile.update) {
-            res.status(202).json({ message: updateProfile.message });
-        } else {
-            res.status(401).json({ message: updateProfile.message });
-        }
-        
+            return res.status(202).json({ message: updateProfile.message });
+        } res.status(401).json({ message: updateProfile.message });
     } catch (error) {
-        
+        res.status(500).json({ message: error.message }); 
     }
-
 }
 

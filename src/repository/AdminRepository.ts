@@ -4,7 +4,8 @@ import AdminUpdateDTO from '../dto/admin/AdminUpdate';
 export default class AdminRepository {
     static async updateProfileAdmin(admin: AdminUpdateDTO) {
         try {
-            await db.execute("CALL UpdateAdmin(?,?,?,?)", [
+            await db.execute("CALL UpdateAdmin(?,?,?,?,?)", [
+                admin.TokenEmail,
                 admin.documento, 
                 admin.nombre, 
                 admin.apellido, 

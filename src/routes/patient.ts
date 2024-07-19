@@ -3,7 +3,7 @@ import {
     registerPatientController,
     getAllPatientsController,
     getPatientByEmailController,
-    updateProfileDoctorController
+    updateProfilePatientController
 } from "../controller/PatientController";
 import {validationRegisterPatint, validationUpdatePatient } from "../middleware/validatePatient";
 import validationResult from "../middleware/validationResult";
@@ -15,7 +15,7 @@ const router = Router();
 router.post('/register', validationRegisterPatint(),validationResult,registerPatientController);
 router.get('/profile', validateToken, isPatient, getPatientByEmailController);
 router.get('/patients', validateToken, isAdminOrDoctor, getAllPatientsController);
-router.put('/updateProfile',validationUpdatePatient,validationResult,validateToken,isPatient, updateProfileDoctorController);
+router.put('/updateProfile',validationUpdatePatient(),validationResult,validateToken,isPatient, updateProfilePatientController);
 
 export default router;
 

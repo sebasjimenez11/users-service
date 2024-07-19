@@ -38,12 +38,12 @@ export const getPatientByEmailController = async (req:Request,res:Response)=> {
     }
 }
 
-export const updateProfileDoctorController = async (req:Request,res:Response) => { 
+export const updateProfilePatientController = async (req:Request,res:Response) => { 
     try {
-        const { documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono,direccion
+        const { tokenEmail, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono,direccion
         } = req.body;
         
-        const update = await service.updateProfilePatient(new PatientUpdateDto(documentoPac,tipoDoc,nombre,apellido,email,fechaNac,telefono,direccion))
+        const update = await service.updateProfilePatient(new PatientUpdateDto(tokenEmail,documentoPac,tipoDoc,nombre,apellido,email,fechaNac,telefono,direccion))
     
         if(update.update){
            return res.status(200).json({status: update.status});

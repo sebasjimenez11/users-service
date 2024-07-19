@@ -60,7 +60,8 @@ export default class DoctorRepository {
 
     static async updateProfileDoctor(doctor: DoctorUpdateDto) {
         try {
-            await db.execute('CALL UpdateDoctor(?,?,?,?,?,?)', [
+            await db.execute('CALL UpdateDoctor(?,?,?,?,?,?,?)', [
+                doctor.tokenEmail,
                 doctor.tarjetaProf, 
                 doctor.documento, 
                 doctor.nombre, 

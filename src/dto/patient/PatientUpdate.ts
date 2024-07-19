@@ -1,5 +1,6 @@
 // PacienteDto.ts
 export default class PatientUpdateDto {
+    private _tokenEmail: string;
     private _documentoPac: number;
     private _tipoDoc: string;
     private _nombre: string;
@@ -10,6 +11,7 @@ export default class PatientUpdateDto {
     private _fechaNac: Date;
 
     constructor(
+        tokenEmail: string,
         documentoPac: number,
         tipoDoc: string,
         nombre: string,
@@ -19,6 +21,7 @@ export default class PatientUpdateDto {
         telefono: string,
         direccion: string,
     ) {
+        this._tokenEmail = tokenEmail;
         this._documentoPac = documentoPac;
         this._tipoDoc = tipoDoc;
         this._nombre = nombre;
@@ -93,4 +96,11 @@ export default class PatientUpdateDto {
         this._fechaNac = fechaNac;
     }
 
+    get tokenEmail():string{
+        return this._tokenEmail;
+    }
+
+    set tokenEmail(TokenEmail:string){
+        this._tokenEmail = TokenEmail;
+    }
 }

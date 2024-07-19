@@ -51,9 +51,9 @@ export default class PatientRepository {
 
     static async updateProfilePatient (patient: PatientUpdateDto){
         try {
-            console.log(patient)
-            await db.execute('CALL UpdatePaciente(?,?,?,?,?,?,?,?)',
-            [
+            await db.execute('CALL UpdatePaciente(?,?,?,?,?,?,?,?,?)',
+            [  
+                patient.tokenEmail,
                 patient.documentoPac, 
                 patient.tipoDoc, 
                 patient.nombre, 

@@ -48,11 +48,11 @@ export const getDoctorCatalogController = async (req: Request, res: Response) =>
 
 export const updateProfileDoctorContoller = async (req:Request,res:Response)=> {
     try {
-        const {tarjetaProf,documento,nombre,apellido,email,valorCita} = req.body
-        const updateProfile = await service.updateProfileDoctor(new DoctorUpdateDto(tarjetaProf,documento,nombre,apellido,email,valorCita));
+        const {tokenEmail,tarjetaProf,documento,nombre,apellido,email,valorCita} = req.body
+        const updateProfile = await service.updateProfileDoctor(new DoctorUpdateDto(tokenEmail,tarjetaProf,documento,nombre,apellido,email,valorCita));
         if (updateProfile.update) {
-            res.status(202).json({message:updateProfile.update})
-        } res.status(401).json({message:updateProfile.update})
+           return res.status(202).json({message:updateProfile.status})
+        } res.status(401).json({message:updateProfile.status})
         
     } catch (error) {
         res.status(500).json({ message: error.message }); 
