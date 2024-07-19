@@ -1,4 +1,5 @@
 import DoctorDto from "../dto/doctor/Doctor";
+import DoctorUpdateDto from "../dto/doctor/DoctorUpdate";
 import doctorRepository from "../repository/DoctorRepository";
 
 export default class DoctorService {
@@ -10,15 +11,15 @@ export default class DoctorService {
         return await doctorRepository.getAllDoctors();
     }
 
-    async getDoctorById(id: string) {
-        return await doctorRepository.getDoctorById(id);
+    async getDoctorByEmail(email: string) {
+        return await doctorRepository.getDoctorByEmail(email);
     }
 
     async getDoctorCatalog () {
         return await doctorRepository.getDoctorCatalog();
     }
 
-    async updateProfileDoctor(doctor:DoctorDto){
-
+    async updateProfileDoctor(doctor:DoctorUpdateDto){
+        return await doctorRepository.updateProfileDoctor(doctor);
     }
 }

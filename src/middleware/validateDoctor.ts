@@ -1,7 +1,7 @@
 import { body } from 'express-validator';
 import { dominiosPermitidos } from '../common/constants/constants';
 
-const doctorValidator = () => { 
+ export const doctorValidator = () => { 
     return [
         body('tarjetaProf')
             .notEmpty()
@@ -65,4 +65,42 @@ const doctorValidator = () => {
     ];
 };
 
-export default doctorValidator;
+export const validationUpdateProfile = () =>{
+    return [
+        body('tarjetaProf')
+           .optional()
+           .notEmpty()
+           .withMessage('La tarjeta profesional es requerida'),
+
+        body('documento')
+           .optional()
+           .notEmpty()
+           .withMessage('El documento es requerido'),
+
+        body('nombre')
+           .optional()
+           .notEmpty()
+           .withMessage('El nombre es requerido'),
+
+        body('apellido')
+           .optional()
+           .notEmpty()
+           .withMessage('El apellido es requerido'),
+        body('email')
+           .isEmail()
+           .withMessage('Debe ser un correo electrónico válido')
+           .custom(value => {
+               const dominio = value.split('@')[1];
+               if (!dominiosPermitidos.includes(dominio)) {
+                   throw new Error('Dominio de correo no permitido');
+               }
+               return true;
+           }),
+        body('valorCita')
+            .notEmpty()
+            .withMessage('El valor de la cita es requerido')
+            .isNumeric()
+            .withMessage('El valor de la cita debe ser numerico'),
+    ]
+
+}

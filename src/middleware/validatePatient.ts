@@ -3,7 +3,7 @@ import moment from 'moment';
 import { tipoDoc, formatoFecha, dominiosPermitidos } from '../common/constants/constants';
 
 
-const validationRegisterPatint = ()=>{
+export const validationRegisterPatint = ()=>{
     return [
         body('documentoPac').notEmpty().withMessage("el documento es requerido"),
         body('tipoDoc').custom(values =>{
@@ -59,8 +59,52 @@ const validationRegisterPatint = ()=>{
         .withMessage("El nombre es requerido")
         .isIn(['paciente'])
         .withMessage("El rol debe ser paciente")
-        
     ];
 };
 
-export default validationRegisterPatint;
+export const validationUpdatePatient = ()=>{
+    return [
+        body('documentoPac').notEmpty().withMessage("el documento es requerido"),
+        body('tipoDoc').custom(values =>{
+            if(!tipoDoc.includes(values)){
+                throw new Error('Tipo de documento no válido');
+            }
+            return true;
+
+        }),
+        body('nombre')
+        .notEmpty()
+        .withMessage("El nombre es requerido"),
+
+        body('apellido')
+        .notEmpty()
+        .withMessage("El apellido es requerido"),
+
+        body('email')
+        .isEmail()
+        .withMessage('Debe ser un correo electrónico válido')
+        .custom(value => {
+            const dominio = value.split('@')[1];
+            if (!dominiosPermitidos.includes(dominio)) {
+                throw new Error('Dominio de correo no permitido');
+            }
+            return true;
+        }),
+
+        body('fechaNac').custom(value => {
+            const fechaIngresada = moment(value, formatoFecha, true);
+            if (!fechaIngresada.isValid()) {
+                throw new Error(`Formato de fecha no válido. Use el formato ${formatoFecha}`);
+            }
+            if (fechaIngresada.isAfter(moment())) {
+                throw new Error('La fecha no puede ser mayor al día de hoy');
+            }
+            return true;
+        }),
+
+        body('direccion').notEmpty().withMessage("la direccion es requerida"),
+
+        body('telefono').notEmpty().withMessage("la direccion es requerida"),
+    ]
+}
+

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import doctorDto from "../dto/doctor/Doctor";
 import doctorService from "../service/doctorService";
+import DoctorUpdateDto from "../dto/doctor/DoctorUpdate";
 
 const service = new doctorService();
 
@@ -29,7 +30,7 @@ export const getAllDoctorsController = async (req: Request, res: Response) => {
 export const getDoctorByEmailController = async (req: Request, res: Response) => {
     try {
         const emailDoctor = req.body.tokenEmail;
-        const getByIdDoctor = await service.getDoctorById(emailDoctor);
+        const getByIdDoctor = await service.getDoctorByEmail(emailDoctor);
         res.status(202).json({ message: getByIdDoctor.message, doctor: getByIdDoctor.doctor });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -47,8 +48,13 @@ export const getDoctorCatalogController = async (req: Request, res: Response) =>
 
 export const updateProfileDoctorContoller = async (req:Request,res:Response)=> {
     try {
+        const {tarjetaProf,documento,nombre,apellido,email,valorCita} = req.body
+        const updateProfile = await service.updateProfileDoctor(new DoctorUpdateDto(tarjetaProf,documento,nombre,apellido,email,valorCita));
+        if (updateProfile.update) {
+            res.status(202).json({message:updateProfile.update})
+        } res.status(401).json({message:updateProfile.update})
         
     } catch (error) {
-        
+        res.status(500).json({ message: error.message }); 
     }
 }

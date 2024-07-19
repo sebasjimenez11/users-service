@@ -8,7 +8,7 @@ import {
 } from "../controller/DoctorController";
     
 import validateToken from "../middleware/verifyToken";
-import doctorValidator  from "../middleware/validateDoctor";
+import {doctorValidator, validationUpdateProfile } from "../middleware/validateDoctor";
 import validationResult from "../middleware/validationResult";
 import { isAdmin, isDoctor } from "../middleware/hasRole";
 
@@ -18,7 +18,7 @@ router.post('/register',doctorValidator(), validationResult,validateToken,isAdmi
 router.get('/profile', validateToken, isDoctor, getDoctorByEmailController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
-router.put('/updateProfile', validateToken, isDoctor, updateProfileDoctorContoller);
+router.put('/updateProfile',validationUpdateProfile(),validationResult, validateToken, isDoctor, updateProfileDoctorContoller);
 
 export default router;
 
