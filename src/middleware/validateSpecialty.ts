@@ -4,13 +4,13 @@ import { body ,param} from 'express-validator';
 
 export const specialtyValidator = () =>{
     return [
-        body('codigoEspc')
+        body('Codigo_Espc')
             .notEmpty().withMessage('El código de especialidad es requerido')
             .isString().withMessage('El código de especialidad debe ser una cadena de caracteres'),
-        body('nombre')
+        body('Nombre')
             .notEmpty().withMessage('El nombre es requerido')
             .isString().withMessage('El nombre debe ser una cadena de caracteres'),
-        body('descripcion')
+        body('Descripcion')
             .optional()
             .isString().withMessage('La descripción debe ser una cadena de caracteres')
         ];

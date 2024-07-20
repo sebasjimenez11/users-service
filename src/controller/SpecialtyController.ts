@@ -5,9 +5,9 @@ import SpecialtyDto from "../dto/specialty/Specialty";
 const service = new specialtyService();
 const controllerRegister = async (req:Request,res:Response) => {
     try {
-        const {codigoEspc, nombre, descripcion} = req.body;
+        const {Codigo_Espc, Nombre, Descripcion} = req.body;
 
-        const create = await service.create(new SpecialtyDto(codigoEspc, nombre, descripcion));
+        const create = await service.create(new SpecialtyDto(Codigo_Espc, Nombre, Descripcion));
         if(create.success){
             return res.status(202).json({message:create.message});
         }res.status(404).json({message:create.message}); 
