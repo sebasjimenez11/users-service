@@ -1,6 +1,6 @@
-import  express  from 'express';
-import dotenv from 'dotenv'
-import bodyParser from 'body-parser'
+import express from 'express';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import auht from './routes/auth';
@@ -9,8 +9,7 @@ import admin from './routes/admin';
 import doctor from './routes/doctor';
 import specialty from './routes/specialty';
 
-dotenv.config();
-
+dotenv.config(); 
 
 const app = express();
 app.use(cors());
@@ -29,3 +28,5 @@ app.listen(PORT, () => {
 }).on("error", (error) => {
   throw new Error(error.message);
 });
+
+export default app

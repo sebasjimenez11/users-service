@@ -1,18 +1,10 @@
 // src/validators/specialtyValidator.ts
-
-import { body ,param} from 'express-validator';
+import { validateStringField} from "../helpers/generateValidator";
 
 export const specialtyValidator = () =>{
     return [
-        body('Codigo_Espc')
-            .notEmpty().withMessage('El código de especialidad es requerido')
-            .isString().withMessage('El código de especialidad debe ser una cadena de caracteres'),
-        body('Nombre')
-            .notEmpty().withMessage('El nombre es requerido')
-            .isString().withMessage('El nombre debe ser una cadena de caracteres'),
-        body('Descripcion')
-            .optional()
-            .isString().withMessage('La descripción debe ser una cadena de caracteres')
-        ];
+        validateStringField('Codigo_Espc', 'El código de especialidad es requerido'),
+        validateStringField('Nombre', 'El nombre es requerido'),
+        validateStringField('Descripcion', 'La descripción debe ser una cadena de caracteres')
+    ];
 }
-

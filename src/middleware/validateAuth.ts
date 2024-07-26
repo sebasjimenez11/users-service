@@ -1,5 +1,6 @@
 import { body } from "express-validator";
-import { dominiosPermitidos } from '../common/constants/constants';
+import { dominiosPermitidos } from "../common/constants/constants";
+
 
 const validateAuht = () => {
     return [

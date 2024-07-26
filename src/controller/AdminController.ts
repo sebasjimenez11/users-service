@@ -1,28 +1,37 @@
-import { Request, Response } from "express";
-import AdminService from "../service/adminService";
-import AdminUpdateDTO from "../dto/admin/AdminUpdate";
+// src/controller/AdminController.ts
+import { Request, Response } from 'express';
+import AdminService from '../service/adminService';
+import responseHandler from '../helpers/responseHandler';
+import AdminUpdateDTO from '../dto/admin/AdminUpdate';
+import StatusCodes from '../common/constants/statusCode';
 
-const service:AdminService = new AdminService();
+const adminService = new AdminService();
 
-export const getByEmailAdminContoller = async (req:Request,res:Response)=> {
+export const getByEmailAdminController = async (req: Request, res: Response) => {
     try {
         const email = req.body.tokenEmail;
-        const admin = await service.getByEmailAdmin(email);
-        res.status(202).json({ admin: admin.admin });
-    } catch (error) {
-        res.status(500).json({ message: error.message }); 
-    }
-}
+        const result = await adminService.getByEmailAdmin(email);
 
-export const updateProfileadminController = async (req:Request,res:Response)=>{
+        if (result.admin) {
+            responseHandler(res, 200, result.message, result.admin);
+        } else {
+            responseHandler(res, 404, 'Admin not found', null);
+        }
+    } catch (error) {
+        responseHandler(res, 500, 'Error retrieving admin', null);
+    }
+};
+
+export const updateProfileAdminController = async (req: Request, res: Response) => {
     try {
         const { tokenEmail, documento, nombre, apellido, email } = req.body;
-        const updateProfile = await service.updateProfileAdmin(new AdminUpdateDTO(tokenEmail,documento, nombre, apellido, email));
+        const updateProfile = await adminService.updateProfileAdmin(new AdminUpdateDTO(tokenEmail, documento, nombre, apellido, email));
         if (updateProfile.update) {
-            return res.status(202).json({ message: updateProfile.message });
-        } res.status(401).json({ message: updateProfile.message });
+            responseHandler(res, StatusCodes.ACCEPTED, updateProfile.message);
+        } else {
+            responseHandler(res, StatusCodes.UNAUTHORIZED, updateProfile.message);
+        }
     } catch (error) {
-        res.status(500).json({ message: error.message }); 
+        responseHandler(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
 }
-

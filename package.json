@@ -4,8 +4,11 @@
   "main": "dist/app.js",
   "license": "MIT",
   "scripts": {
+    "dev": "tsc && nodemon dist/app.js",
     "start": "node dist/app.js",
-    "dev": "tsc && nodemon dist/app.js"
+    "build": "tsc && yarn run copy-certs",
+    "copy-certs": "cpx ./src/certs/**/* ./dist/certs",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,9 +29,12 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/moment": "^2.13.0",
     "@types/morgan": "^1.9.9",
+    "@types/supertest": "^6.0.2",
+    "cpx": "^1.5.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.4",
-    "ts-jest": "^29.1.5",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.3",
     "typescript": "^5.5.3"
   }
 }
