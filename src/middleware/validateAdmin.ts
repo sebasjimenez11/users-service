@@ -1,5 +1,5 @@
 import { validateStringField, validateEmailField, } from "../helpers/generateValidator";
-import { dominiosPermitidos } from '../common/constants/constants';
+import { dominiosPermitidos } from '../config/common/constants/constants';
 
 export const adminUpdateValidate = () => {
     return [

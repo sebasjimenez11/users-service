@@ -3,7 +3,7 @@ import doctorDto from "../dto/doctor/Doctor";
 import doctorService from "../service/doctorService";
 import DoctorUpdateDto from "../dto/doctor/DoctorUpdate";
 import responseHandler from "../helpers/responseHandler";
-import StatusCodes from "../common/constants/statusCode";
+import StatusCodes from "../config/common/constants/statusCode";
 
 const service = new doctorService();
 

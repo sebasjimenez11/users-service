@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import payload from '../common/interfaces/payloadValidator';
+import payload from '../config/common/interfaces/payloadValidator';
 
 const validateToken = async (req: Request, res: Response, next: NextFunction) => {
 

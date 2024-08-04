@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import specialtyService from "../service/specialtyService";
 import SpecialtyDto from "../dto/specialty/Specialty";
 import responseHandler from "../helpers/responseHandler";
-import statusCodes from "../common/constants/statusCode";
+import statusCodes from "../config/common/constants/statusCode";
 
 const service = new specialtyService();
 

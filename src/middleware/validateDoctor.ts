@@ -1,5 +1,5 @@
 import { validateOptionalStringField,validateStringField, validateEmailField,validatePasswordField, validateNumericField } from "../helpers/generateValidator";
-import { dominiosPermitidos } from '../common/constants/constants';
+import { dominiosPermitidos } from '../config/common/constants/constants';
 
 export const doctorValidator = () => {
     return [

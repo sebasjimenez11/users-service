@@ -1,5 +1,5 @@
 import {  validateRoleField,validateStringField, validateTipoDocField, validateEmailField,validatePasswordField, validateDateField } from "../helpers/generateValidator";
-import { tipoDoc, formatoFecha, dominiosPermitidos } from '../common/constants/constants';
+import { tipoDoc, formatoFecha, dominiosPermitidos } from '../config/common/constants/constants';
 
 export const validationRegisterPatient = () => {
     return [

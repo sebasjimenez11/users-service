@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import AdminService from '../service/adminService';
 import responseHandler from '../helpers/responseHandler';
 import AdminUpdateDTO from '../dto/admin/AdminUpdate';
-import StatusCodes from '../common/constants/statusCode';
+import StatusCodes from '../config/common/constants/statusCode';
 
 const adminService = new AdminService();
 

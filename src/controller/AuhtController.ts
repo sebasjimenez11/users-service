@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import AuhtDto from "../dto/auht/Auht";
 import AuhtService from "../service/authService";
 import responseHandler from "../helpers/responseHandler";
-import StatusCodes  from "../common/constants/statusCode";
+import StatusCodes  from "../config/common/constants/statusCode";
 
 const controller = async (req: Request, res: Response) => {
     try {
@@ -10,7 +10,7 @@ const controller = async (req: Request, res: Response) => {
         const login = await new AuhtService().auht(new AuhtDto(password, document, email));
 
         if (login.logged) {
-            responseHandler(res, StatusCodes.OK, login.message, { token: login.token });
+            responseHandler(res, StatusCodes.OK, login.message, login.token );
         } else {
             responseHandler(res, StatusCodes.NOT_FOUND, login.message);
         }
