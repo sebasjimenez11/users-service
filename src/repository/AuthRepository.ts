@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 export default class AuhtRepository {
         static async login (auht:AuhtDto){
             try {
-                const result: any = await db.execute('SELECT Email, Password, user_type FROM all_users WHERE Email = ? OR Documento = ? LIMIT 1',[auht.email,auht.document]);
+                const result: any = await db.execute('SELECT Id, Email, Password, user_type FROM all_users WHERE Email = ? OR Documento = ? LIMIT 1',[auht.email,auht.document]);
                 if (result[0].length > 0) { 
                     const userRow = result[0]; 
                     const isPasswordValid = await bcrypt.compare(auht.password, userRow[0].Password);
@@ -13,7 +13,7 @@ export default class AuhtRepository {
                         return {
                             logged: true, 
                             message: "Successful authentication",
-                            email: userRow[0].Email,
+                            ID: userRow[0].Id,
                             rol: userRow[0].user_type,
                         }
                     }

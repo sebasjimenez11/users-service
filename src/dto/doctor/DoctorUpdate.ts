@@ -1,6 +1,6 @@
 // DoctorDto.ts
 export default class DoctorUpdateDto {
-    private _tokenEmail: string;
+    private _ID: string;
     private _tarjetaProf: string;
     private _documento: number;
     private _nombre: string;
@@ -11,7 +11,7 @@ export default class DoctorUpdateDto {
     
 
     constructor(
-        tokenEmail: string,
+        ID: string,
         tarjetaProf: string,
         documento: number,
         nombre: string,
@@ -19,13 +19,21 @@ export default class DoctorUpdateDto {
         email: string,
         valorCita: number,
     ) {
-        this._tokenEmail = tokenEmail;
+        this._ID = ID;
         this._tarjetaProf = tarjetaProf;
         this._documento = documento;
         this._nombre = nombre;
         this._apellido = apellido;
         this._email = email;
         this._valorCita = valorCita;
+    }
+
+    get ID(): string {
+        return this._ID;
+    }
+
+    set ID(ID: string) {
+        this._ID = ID;
     }
     
     get tarjetaProf(): string {
@@ -82,13 +90,5 @@ export default class DoctorUpdateDto {
 
     set valorCita(valorCita:number){
         this.valorCita = valorCita;
-    }
-
-    get tokenEmail():string{
-        return this._tokenEmail;
-    }
-
-    set tokenEmail(TokenEmail:string){
-        this._tokenEmail = TokenEmail;
     }
 }

@@ -1,5 +1,6 @@
 // DoctorDto.ts
 export default class DoctorDto {
+    private _ID: string;
     private _tarjetaProf: string;
     private _documento: number;
     private _nombre: string;
@@ -7,8 +8,7 @@ export default class DoctorDto {
     private _rol: string;
     private _email: string;
     private _estado?: string;
-    private _disponibilidad?: string;
-    private _foto: Blob;
+    private _fotoUrl: string;
     private _password: string;
     private _valorCita: number;
     private _codigoEspc: number;
@@ -20,27 +20,35 @@ export default class DoctorDto {
         apellido: string,
         rol: string,
         email: string,
-        foto: Blob,
+        fotoUrl: string,
         password: string,
         valorCita: number,
         codigoEspc: number,
         estado?: string,
-        disponibilidad?: string,
+        ID?: string
     ) {
+        this._ID = ID;
         this._tarjetaProf = tarjetaProf;
         this._documento = documento;
         this._nombre = nombre;
         this._apellido = apellido;
         this._rol = rol;
         this._email = email;
-        this._foto = foto;
+        this._fotoUrl = fotoUrl;
         this._password = password;
         this._valorCita = valorCita;
         this._codigoEspc = codigoEspc;
         this._estado = estado;
-        this._disponibilidad = disponibilidad;
     }
     
+    get ID(): string {
+        return this._ID;
+    }
+
+    set ID(ID: string) {
+        this._ID = ID;
+    }
+
     get tarjetaProf(): string {
         return this._tarjetaProf;
     }
@@ -97,20 +105,12 @@ export default class DoctorDto {
         this._estado = estado;
     }
 
-    get disponibilidad(): string | undefined {
-        return this._disponibilidad;
+    get fotoUrl(): string {
+        return this._fotoUrl;
     }
 
-    set disponibilidad(disponibilidad: string | undefined) {
-        this._disponibilidad = disponibilidad;
-    }
-
-    get foto(): Blob {
-        return this._foto;
-    }
-
-    set foto(foto: Blob) {
-        this._foto = foto;
+    set fotoUrl(fotoUrl: string) {
+        this._fotoUrl = fotoUrl;
     }
 
     get password(): string {

@@ -1,27 +1,25 @@
 import DoctorDto from "../dto/doctor/Doctor";
 import db from "../config/configBd";
-import generateHash from "../helpers/generateHash";
 import DoctorUpdateDto from "../dto/doctor/DoctorUpdate";
 
 export default class DoctorRepository {
     
     static async registerDoctor(doctor: DoctorDto) {
         try {
-            const password = await generateHash(doctor.password);
-            doctor.password = password;
-            await db.execute('CALL InsertDoctor (?,?,?,?,?,?,?,?,?,?)', [
+            await db.execute('CALL InsertDoctor(?,?,?,?,?,?,?,?,?,?,?)', [
+                doctor.ID,
                 doctor.tarjetaProf, 
                 doctor.documento, 
                 doctor.nombre, 
                 doctor.apellido, 
                 doctor.rol, 
                 doctor.email, 
-                doctor.foto, 
+                doctor.fotoUrl, 
                 doctor.password, 
                 doctor.valorCita, 
                 doctor.codigoEspc
             ]);
-            return { status: "Doctor registered successfully", register: true };
+            return { status: "Doctor registered successfully", register: true, Id: doctor.ID };
         } catch (error) {
             console.log(error);
             return { status: "Error registering doctor: " + error.message, register: false };
@@ -30,7 +28,7 @@ export default class DoctorRepository {
 
     static async getAllDoctors() {
         try {
-            const [rows] = await db.execute("CALL ListMedicos()");
+            const [rows] = await db.execute("CALL ListDoctors()");
             return { message: 'Doctors retrieved successfully', data: rows[0] };
         } catch (error) {
             console.error('Error retrieving doctors:', error);
@@ -38,9 +36,9 @@ export default class DoctorRepository {
         }
     }
 
-    static async getDoctorByEmail(email: string) {
+    static async getDoctorById(ID: string) {
         try {
-            const [rows] = await db.execute("CALL GetDoctorByEmail(?)", [email]);
+            const [rows] = await db.execute("CALL GetDoctorByEmail(?)", [ID]);
             return { message: 'Doctor retrieved successfully', doctor: rows[0][0] };
         } catch (error) {
             console.error('Error retrieving doctor:', error);
@@ -61,7 +59,7 @@ export default class DoctorRepository {
     static async updateProfileDoctor(doctor: DoctorUpdateDto) {
         try {
             await db.execute('CALL UpdateDoctor(?,?,?,?,?,?,?)', [
-                doctor.tokenEmail,
+                doctor.ID,
                 doctor.tarjetaProf, 
                 doctor.documento, 
                 doctor.nombre, 
@@ -69,7 +67,7 @@ export default class DoctorRepository {
                 doctor.email, 
                 doctor.valorCita
             ]);
-            return { status: "Doctor profile updated successfully", update: true };
+            return { status: "Doctor profile updated successfully", update: true, Id: doctor.ID };
         } catch (error) {
             console.log(error);
             return { status: "Error updating doctor profile: " + error.message, update: false };

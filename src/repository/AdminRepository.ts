@@ -3,9 +3,9 @@ import db from '../config/configBd';
 import AdminUpdateDTO from '../dto/admin/AdminUpdate';
 
 export default class AdminRepository {
-    static async getByEmailAdmin(email: string) {
+    static async getAdminById(Id: string) {
         try {
-            const [rows] = await db.execute('CALL GetAdminByEmail(?)', [email]);
+            const [rows] = await db.execute('CALL GetAdminById(?)', [Id]);
             return { message: 'Admin retrieved successfully', admin: rows[0][0] };
         } catch (error) {
             console.error('Error retrieving admin:', error);
@@ -16,7 +16,7 @@ export default class AdminRepository {
     static async updateProfileAdmin(admin: AdminUpdateDTO) {
         try {
             await db.execute("CALL UpdateAdmin(?,?,?,?,?)", [
-                admin.TokenEmail,
+                admin.ID,
                 admin.documento, 
                 admin.nombre, 
                 admin.apellido, 

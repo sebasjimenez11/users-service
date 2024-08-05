@@ -1,4 +1,5 @@
 export default class AdminUpdateDTO {
+    private _ID: string;
     private _TokenEmail: string;
     private _documento: string;
     private _nombre: string;
@@ -6,13 +7,13 @@ export default class AdminUpdateDTO {
     private _email: string;
   
     constructor(
-      TokenEmail: string,
+      ID: string,
       documento: string,
       nombre: string,
       apellido: string,
       email: string,
     ) {
-      this._TokenEmail = TokenEmail;
+      this._ID = ID;
       this._documento = documento;
       this._nombre = nombre;
       this._apellido = apellido;
@@ -20,8 +21,8 @@ export default class AdminUpdateDTO {
     }
   
     // Getters
-    get TokenEmail(): string {
-      return this._TokenEmail;
+    get ID(): string {
+      return this._ID;
     }
   
     get documento(): string {
@@ -41,8 +42,8 @@ export default class AdminUpdateDTO {
     }
   
     // Setters
-    set TokenEmail(value: string) {
-      this._TokenEmail = value;
+    set ID(value: string) {
+      this._ID = value;
     }
   
     set documento(value: string) {

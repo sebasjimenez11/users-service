@@ -9,7 +9,7 @@ export default class AuhtService {
             return {
                 logged: login.logged,
                 message: login?.message,
-                token : generateToken({email : login?.email,rol : login?.rol},process.env.JWT_SECRET,60)
+                token : generateToken({ID : login?.ID,rol : login?.rol},process.env.JWT_SECRET,60)
             }}else{
                 return {message: login?.message, logged: login?.logged}
             }

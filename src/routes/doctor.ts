@@ -2,7 +2,7 @@ import { Router } from "express";
 import { 
     registerDoctorController, 
     getAllDoctorsController, 
-    getDoctorByEmailController, 
+    getDoctorByIdController, 
     getDoctorCatalogController, 
     updateProfileDoctorContoller
 } from "../controller/DoctorController";
@@ -15,7 +15,7 @@ import { isAdmin, isDoctor } from "../middleware/hasRole";
 const router = Router();
 
 router.post('/register',doctorValidator(), validationResult,validateToken,isAdmin ,registerDoctorController);
-router.get('/profile', validateToken, isDoctor, getDoctorByEmailController);
+router.get('/profile', validateToken, isDoctor, getDoctorByIdController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
 router.put('/updateProfile',validationUpdateProfile(),validationResult, validateToken, isDoctor, updateProfileDoctorContoller);

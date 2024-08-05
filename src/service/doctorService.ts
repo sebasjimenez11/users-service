@@ -1,9 +1,13 @@
 import DoctorDto from "../dto/doctor/Doctor";
 import DoctorUpdateDto from "../dto/doctor/DoctorUpdate";
 import doctorRepository from "../repository/DoctorRepository";
+import generateHash from "../helpers/generateHash";
+import generateUniqueId from "../helpers/generateUniqueId";
 
 export default class DoctorService {
     async registerDoctor(doctor: DoctorDto) {
+        doctor.ID = generateUniqueId();
+        doctor.password = await generateHash(doctor.password);
         return await doctorRepository.registerDoctor(doctor);
     }
 
@@ -11,11 +15,11 @@ export default class DoctorService {
         return await doctorRepository.getAllDoctors();
     }
 
-    async getDoctorByEmail(email: string) {
-        return await doctorRepository.getDoctorByEmail(email);
+    async getDoctorById(email: string) {
+        return await doctorRepository.getDoctorById(email);
     }
 
-    async getDoctorCatalog () {
+    async getDoctorCatalog() {
         return await doctorRepository.getDoctorCatalog();
     }
 

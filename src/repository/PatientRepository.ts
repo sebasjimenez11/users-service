@@ -2,16 +2,14 @@ import PatientDto from "../dto/patient/Patient";
 import PatientUpdateDto from "../dto/patient/PatientUpdate";
 import db from "../config/configBd"
 import generateHash from "../helpers/generateHash";
-import { getDoctorByEmailController } from "../controller/DoctorController";
 
 export default class PatientRepository {
 
     static async Register(patient:PatientDto){
         try {
-            const password = await generateHash(patient.password);
-            patient.password =  password;
-            await db.execute('CALL AddPaciente(?,?,?,?,?,?,?,?)',
+            await db.execute('CALL AddPaciente(?,?,?,?,?,?,?,?,?)',
             [
+                patient.ID,  
                 patient.documentoPac, 
                 patient.tipoDoc, 
                 patient.nombre, 
@@ -22,7 +20,7 @@ export default class PatientRepository {
                 patient.password
             ]);
 
-            return {register: true,status: "user inserted correctly",}
+            return {register: true,status: "user inserted correctly", Id: patient.ID}
         } catch (error) {
             console.log(error);
             return {register: false, status:error.message}
@@ -39,9 +37,9 @@ export default class PatientRepository {
         }
     }
 
-    static async getPatientByEmail(email:string){
+    static async getPacienteByEmail(ID:string){
         try {
-            const [rows] = await db.execute('CALL GetPacienteByEmail(?)',[email]);
+            const [rows] = await db.execute('CALL GetPacienteByEmail(?)',[ID]);
             return {message: '', data: rows[0][0]};
         } catch (error) {
             console.log(error);
@@ -53,7 +51,7 @@ export default class PatientRepository {
         try {
             await db.execute('CALL UpdatePaciente(?,?,?,?,?,?,?,?,?)',
             [  
-                patient.tokenEmail,
+                patient.ID,
                 patient.documentoPac, 
                 patient.tipoDoc, 
                 patient.nombre, 

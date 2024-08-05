@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import patientService from "../service/patientService";
 import PatientDto from "../dto/patient/Patient";
 import PatientUpdateDto from "../dto/patient/PatientUpdate";
-import responseHandler from "../helpers/responseHandler";
-import StatusCodes  from "../config/common/constants/statusCode";
 
 const service = new patientService();
 
@@ -13,44 +11,64 @@ export const registerPatientController = async (req: Request, res: Response) => 
         const register = await service.registerPatient(new PatientDto(documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol));
 
         if (register.register) {
-            responseHandler(res, StatusCodes.OK, register.status);
+            res.status(202).json({ message: register.status });
         } else {
-            responseHandler(res, StatusCodes.NOT_FOUND, register.status);
+            res.status(404).json({ message: register.status });
         }
     } catch (error) {
-        responseHandler(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
 
 export const getAllPatientsController = async (req: Request, res: Response) => {
     try {
         const getAllPatients = await service.getAllPatients();
-        responseHandler(res, StatusCodes.ACCEPTED, 'Patients retrieved successfully', getAllPatients.data);
+
+        if (getAllPatients.data) {
+            res.status(200).json({
+                message: 'Patients retrieved successfully',
+                data: getAllPatients.data
+            });
+        } else {
+            res.status(204).json({ message: 'No patients found' });
+        }
     } catch (error) {
-        responseHandler(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
 export const getPatientByEmailController = async (req: Request, res: Response) => {
     try {
-        const getAllPatients = await service.getPatientByEmail(req.body.tokenEmail);
-        responseHandler(res, StatusCodes.ACCEPTED, 'Patient retrieved successfully', getAllPatients.data);
+        const getPatient = await service.getPacienteByEmail(req.body.email);
+
+        if (getPatient.data) {
+            res.status(200).json({
+                message: 'Patient retrieved successfully',
+                data: getPatient.data
+            });
+        } else {
+            res.status(404).json({ message: 'Patient not found' });
+        }
     } catch (error) {
-        responseHandler(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
 export const updateProfilePatientController = async (req: Request, res: Response) => {
     try {
-        const { tokenEmail, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion } = req.body;
-        const update = await service.updateProfilePatient(new PatientUpdateDto(tokenEmail, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion));
+        const { ID, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion } = req.body;
+        const update = await service.updateProfilePatient(new PatientUpdateDto(ID, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion));
 
         if (update.update) {
-            responseHandler(res, StatusCodes.OK, update.status);
+            res.status(200).json({ message: update.status });
         } else {
-            responseHandler(res, StatusCodes.NOT_FOUND, update.status);
+            res.status(404).json({ message: update.status });
         }
     } catch (error) {
-        responseHandler(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }

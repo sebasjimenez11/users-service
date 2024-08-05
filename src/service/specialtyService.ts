@@ -1,5 +1,5 @@
 import SpecialtyDto from "../dto/specialty/Specialty";
-import SpecialtyRepository from "../repository/specialtyRepository";
+import SpecialtyRepository from "../repository/SpecialtyRepository";
 
 
 export default class specialtyService{

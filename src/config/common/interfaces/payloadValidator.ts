@@ -1,6 +1,6 @@
 export default interface payload {
     data: {
-    email: string,
+    ID : string,
     rol : string
   },
     exp: number,

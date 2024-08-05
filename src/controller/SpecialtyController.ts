@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import specialtyService from "../service/specialtyService";
 import SpecialtyDto from "../dto/specialty/Specialty";
-import responseHandler from "../helpers/responseHandler";
-import statusCodes from "../config/common/constants/statusCode";
 
 const service = new specialtyService();
 
@@ -12,21 +10,25 @@ const controllerRegister = async (req: Request, res: Response) => {
         const create = await service.create(new SpecialtyDto(Codigo_Espc, Nombre, Descripcion));
         
         if (create.success) {
-            return responseHandler(res, statusCodes.ACCEPTED, create.message);
+            return res.status(202).json({ message: create.message });
         }
-        responseHandler(res, statusCodes.NOT_FOUND, create.message);
+        res.status(404).json({ message: create.message });
     } catch (error) {
-        console.log(error);
-        responseHandler(res, statusCodes.INTERNAL_SERVER_ERROR, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
 
 const controllerGetAllSpecialty = async (req: Request, res: Response): Promise<void> => {
     try {
         const getAll = await service.getAll();
-        responseHandler(res, statusCodes.ACCEPTED, "Especialidades obtenidas con éxito", getAll.data);
+        res.status(202).json({
+            message: "Especialidades obtenidas con éxito",
+            data: getAll.data
+        });
     } catch (error) {
-        responseHandler(res, statusCodes.NOT_FOUND, error.message);
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 };
 

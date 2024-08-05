@@ -1,4 +1,4 @@
 export default interface payload{ 
-    email : string,
+    ID : string,
     rol : string
   }

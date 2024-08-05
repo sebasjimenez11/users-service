@@ -1,5 +1,6 @@
 // PacienteDto.ts
 export default class PatientDto {
+    private _ID: string; 
     private _documentoPac: number;
     private _tipoDoc: string;
     private _nombre: string;
@@ -17,16 +18,26 @@ export default class PatientDto {
         email: string,
         password: string,
         fechaNac: Date,
-        rol: string
+        rol: string,
+        Id?: string
     ) {
-        this._documentoPac = documentoPac;
-        this._tipoDoc = tipoDoc;
-        this._nombre = nombre;
-        this._apellido = apellido;
-        this._email = email;
-        this._password = password;
-        this._fechaNac = fechaNac;
-        this._rol = rol;
+        this.ID = Id
+        this.documentoPac = documentoPac;
+        this.tipoDoc = tipoDoc;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.fechaNac = fechaNac;
+        this.rol = rol;
+    }
+
+    get ID(): string {
+        return this._ID;
+    }
+
+    set ID(ID: string) {
+        this._ID = ID;
     }
 
     get documentoPac(): number {
