@@ -21,15 +21,15 @@ export default class PatientUpdateDto {
         telefono: string,
         direccion: string,
     ) {
-        this._ID = ID;
-        this._documentoPac = documentoPac;
-        this._tipoDoc = tipoDoc;
-        this._nombre = nombre;
-        this._apellido = apellido;
-        this._email = email;
-        this._fechaNac = fechaNac;
-        this._telefono = telefono;
-        this._direccion = direccion;
+        this.ID = ID;
+        this.documentoPac = documentoPac;
+        this.tipoDoc = tipoDoc;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.fechaNac = fechaNac;
+        this.telefono = telefono;
+        this.direccion = direccion;
     }
 
     get ID(): string {

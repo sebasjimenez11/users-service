@@ -11,14 +11,16 @@ import validateToken from "../middleware/verifyToken";
 import {doctorValidator, validationUpdateProfile } from "../middleware/validateDoctor";
 import validationResult from "../middleware/validationResult";
 import { isAdmin, isDoctor } from "../middleware/hasRole";
+import imageUploadMiddleware from "../middleware/imageUploadMiddleware";
 
 const router = Router();
 
-router.post('/register',doctorValidator(), validationResult,validateToken,isAdmin ,registerDoctorController);
+router.post('/register',validateToken, isAdmin,imageUploadMiddleware,doctorValidator(), validationResult ,registerDoctorController);
 router.get('/profile', validateToken, isDoctor, getDoctorByIdController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
 router.put('/updateProfile',validationUpdateProfile(),validationResult, validateToken, isDoctor, updateProfileDoctorContoller);
+router.patch('/updatephoto',imageUploadMiddleware);
 
 export default router;
 

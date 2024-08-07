@@ -28,3 +28,5 @@ export const updateProfileAdminController = async (req: Request, res: Response) 
         res.status(505).json({ message : 'Internal Server Error' })
     }
 }
+
+

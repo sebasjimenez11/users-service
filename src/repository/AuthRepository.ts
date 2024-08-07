@@ -15,6 +15,7 @@ export default class AuhtRepository {
                             message: "Successful authentication",
                             ID: userRow[0].Id,
                             rol: userRow[0].user_type,
+                            email : userRow[0].Email
                         }
                     }
                 return {logged: false, message: "Invalid username or password" };

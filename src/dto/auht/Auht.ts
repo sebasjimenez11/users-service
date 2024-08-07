@@ -8,9 +8,9 @@ export default class AuhtDto {
         document?: string,
         email?: string
     ){
-        this._document = document;
-        this._email = email;
-        this._password = password;
+        this.document = document;
+        this.email = email;
+        this.password = password;
     }
 
     get document(): string{

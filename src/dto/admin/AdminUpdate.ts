@@ -1,6 +1,5 @@
 export default class AdminUpdateDTO {
     private _ID: string;
-    private _TokenEmail: string;
     private _documento: string;
     private _nombre: string;
     private _apellido: string;
@@ -13,11 +12,11 @@ export default class AdminUpdateDTO {
       apellido: string,
       email: string,
     ) {
-      this._ID = ID;
-      this._documento = documento;
-      this._nombre = nombre;
-      this._apellido = apellido;
-      this._email = email;
+      this.ID = ID;
+      this.documento = documento;
+      this.nombre = nombre;
+      this.apellido = apellido;
+      this.email = email;
     }
   
     // Getters

@@ -1,35 +1,35 @@
 import PatientDto from "../dto/patient/Patient";
 import PatientUpdateDto from "../dto/patient/PatientUpdate";
 import db from "../config/configBd"
-import generateHash from "../helpers/generateHash";
 
 export default class PatientRepository {
 
-    static async Register(patient:PatientDto){
-        try {
-            await db.execute('CALL AddPaciente(?,?,?,?,?,?,?,?,?)',
-            [
-                patient.ID,  
-                patient.documentoPac, 
-                patient.tipoDoc, 
-                patient.nombre, 
-                patient.apellido,
-                patient.email,  
-                patient.rol, 
-                patient.fechaNac, 
-                patient.password
-            ]);
+        static async Register(patient:PatientDto){
+            try {
+                console.log(patient.tipoDoc);   
+                await db.execute('CALL InsertPatient(?,?,?,?,?,?,?,?,?)',
+                [
+                    patient.ID,  
+                    patient.documentoPac, 
+                    patient.tipoDoc, 
+                    patient.nombre, 
+                    patient.apellido,
+                    patient.email,  
+                    patient.rol, 
+                    patient.fechaNac, 
+                    patient.password
+                ]);
 
-            return {register: true,status: "user inserted correctly", Id: patient.ID}
-        } catch (error) {
-            console.log(error);
-            return {register: false, status:error.message}
+                return {register: true,status: "user inserted correctly", Id: patient.ID}
+            } catch (error) {
+                console.log(error);
+                return {register: false, status:error}
+            }
         }
-    }
 
     static async getAllPatients(){
         try {
-            const [rows] = await db.execute('CALL ListPacientes()');
+            const [rows] = await db.execute('CALL ListPatients()');
             return {message: '', data: rows[0]};
         } catch (error) {
             console.log(error);
@@ -39,7 +39,7 @@ export default class PatientRepository {
 
     static async getPacienteByEmail(ID:string){
         try {
-            const [rows] = await db.execute('CALL GetPacienteByEmail(?)',[ID]);
+            const [rows] = await db.execute('CALL GetPatientById(?)',[ID]);
             return {message: '', data: rows[0][0]};
         } catch (error) {
             console.log(error);
@@ -49,7 +49,7 @@ export default class PatientRepository {
 
     static async updateProfilePatient (patient: PatientUpdateDto){
         try {
-            await db.execute('CALL UpdatePaciente(?,?,?,?,?,?,?,?,?)',
+            await db.execute('CALL UpdatePatient(?,?,?,?,?,?,?,?,?)',
             [  
                 patient.ID,
                 patient.documentoPac, 

@@ -27,18 +27,18 @@ export default class DoctorDto {
         estado?: string,
         ID?: string
     ) {
-        this._ID = ID;
-        this._tarjetaProf = tarjetaProf;
-        this._documento = documento;
-        this._nombre = nombre;
-        this._apellido = apellido;
-        this._rol = rol;
-        this._email = email;
-        this._fotoUrl = fotoUrl;
-        this._password = password;
-        this._valorCita = valorCita;
-        this._codigoEspc = codigoEspc;
-        this._estado = estado;
+        this.ID = ID;
+        this.tarjetaProf = tarjetaProf;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.rol = rol;
+        this.email = email;
+        this.fotoUrl = fotoUrl;
+        this.password = password;
+        this.valorCita = valorCita;
+        this.codigoEspc = codigoEspc;
+        this.estado = estado;
     }
     
     get ID(): string {
@@ -134,6 +134,6 @@ export default class DoctorDto {
     }
 
     set valorCita(valorCita:number){
-        this.valorCita = valorCita;
+        this._valorCita = valorCita;
     }
 }

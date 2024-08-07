@@ -38,7 +38,7 @@ export default class DoctorRepository {
 
     static async getDoctorById(ID: string) {
         try {
-            const [rows] = await db.execute("CALL GetDoctorByEmail(?)", [ID]);
+            const [rows] = await db.execute("CALL GetDoctorById(?)", [ID]);
             return { message: 'Doctor retrieved successfully', doctor: rows[0][0] };
         } catch (error) {
             console.error('Error retrieving doctor:', error);

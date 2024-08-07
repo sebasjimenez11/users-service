@@ -19,13 +19,13 @@ export default class DoctorUpdateDto {
         email: string,
         valorCita: number,
     ) {
-        this._ID = ID;
-        this._tarjetaProf = tarjetaProf;
-        this._documento = documento;
-        this._nombre = nombre;
-        this._apellido = apellido;
-        this._email = email;
-        this._valorCita = valorCita;
+        this.ID = ID;
+        this.tarjetaProf = tarjetaProf;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.valorCita = valorCita;
     }
 
     get ID(): string {

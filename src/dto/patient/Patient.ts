@@ -1,7 +1,7 @@
 // PacienteDto.ts
 export default class PatientDto {
     private _ID: string; 
-    private _documentoPac: number;
+    private _documentoPac: string;
     private _tipoDoc: string;
     private _nombre: string;
     private _apellido: string;
@@ -11,7 +11,7 @@ export default class PatientDto {
     private _password: string;
 
     constructor(
-        documentoPac: number,
+        documentoPac: string,
         tipoDoc: string,
         nombre: string,
         apellido: string,
@@ -40,11 +40,11 @@ export default class PatientDto {
         this._ID = ID;
     }
 
-    get documentoPac(): number {
+    get documentoPac(): string {
         return this._documentoPac;
     }
 
-    set documentoPac(documentoPac: number) {
+    set documentoPac(documentoPac: string) {
         this._documentoPac = documentoPac;
     }
 

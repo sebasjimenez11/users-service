@@ -5,9 +5,9 @@ export default class SpecialtyDto {
     private _descripcion?: string;
 
     constructor(codigoEspc: string, nombre: string, descripcion?: string) {
-        this._codigoEspc = codigoEspc;
-        this._nombre = nombre;
-        this._descripcion = descripcion;
+        this.codigoEspc = codigoEspc;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     get codigoEspc(): string {

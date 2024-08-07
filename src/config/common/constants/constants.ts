@@ -1,4 +1,4 @@
-export const tipoDoc: string[] = ['Cedula Cidadania', 'Tarjeta Identidad', 'Pasaporte', 'Cedula Extranjeria', 'visa'];
+export const tipoDoc: string[] = ['Cedula Ciudadania', 'Tarjeta Identidad', 'Pasaporte', 'Cedula Extranjeria', 'visa'];
 export const formatoFecha: string = 'YYYY-MM-DD';
 export const dominiosPermitidos: string[] = [
     'gmail.com',
