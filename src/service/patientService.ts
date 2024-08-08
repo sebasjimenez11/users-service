@@ -21,6 +21,10 @@ export default class patientService {
     }
 
     async updateProfilePatient(patient: PatientUpdateDto){
-        return await PatientRepository.updateProfilePatient(patient)
+        return await PatientRepository.updateProfilePatient(patient);
+    }
+
+    async UpdatePatientProfilePic(ID:string, fotoUrl:string){
+        return await PatientRepository.UpdatePatientProfilePic(ID, fotoUrl);
     }
 }

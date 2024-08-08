@@ -1,4 +1,3 @@
-// services/azureBlobService.ts
 import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
 import dotenv from 'dotenv';
 
@@ -19,5 +18,15 @@ export async function uploadImageToAzure(file: Express.Multer.File): Promise<str
         blobHTTPHeaders: { blobContentType: file.mimetype }
     });
 
-    return blockBlobClient.url; 
+    return blockBlobClient.url;
+}
+
+export async function deleteImageFromAzure(imageUrl: string): Promise<void> {
+    const containerClient = blobServiceClient.getContainerClient(containerName);
+    const blobName = imageUrl.split('/').pop(); // Extrae el nombre del blob de la URL
+    if (!blobName) {
+        throw new Error("Invalid image URL");
+    }
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+    await blockBlobClient.deleteIfExists();
 }

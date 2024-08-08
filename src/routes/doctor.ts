@@ -4,7 +4,8 @@ import {
     getAllDoctorsController, 
     getDoctorByIdController, 
     getDoctorCatalogController, 
-    updateProfileDoctorContoller
+    updateProfileDoctorContoller,
+    UpdateDoctorProfilePicController
 } from "../controller/DoctorController";
     
 import validateToken from "../middleware/verifyToken";
@@ -20,7 +21,7 @@ router.get('/profile', validateToken, isDoctor, getDoctorByIdController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);
 router.put('/updateProfile',validationUpdateProfile(),validationResult, validateToken, isDoctor, updateProfileDoctorContoller);
-router.patch('/updatephoto',imageUploadMiddleware);
+router.patch('/updatePhoto', validateToken, isDoctor, imageUploadMiddleware, UpdateDoctorProfilePicController);
 
 export default router;
 

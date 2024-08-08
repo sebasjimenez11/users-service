@@ -11,10 +11,7 @@ export const registerDoctorController = async (req: Request, res: Response) => {
         const registerService = await service.registerDoctor(new doctorDto(tarjetaProf, documento, nombre, apellido, rol, email, fotoUrl, password, valorCita, codigoEspc));
         
         if (registerService.register) {
-            res.status(202).json({
-                message : registerService.status,
-                Id : registerService.Id
-            })
+            res.status(202).json({message : registerService.status,})
         } else {
             res.status(404).json({message : registerService.status})
         }
@@ -69,12 +66,31 @@ export const updateProfileDoctorContoller = async (req: Request, res: Response) 
         const updateProfile = await service.updateProfileDoctor(new DoctorUpdateDto(ID, tarjetaProf, documento, nombre, apellido, email, valorCita));
         
         if (updateProfile.update) {
-            res.status(200).json({message: updateProfile.status, ID : updateProfile.Id})
+            res.status(200).json({message: updateProfile.status})
         } else {
             res.status(400).json({message: updateProfile.status});
         }
     } catch (error) {
         console.log(error);
         res.status(505).json({ message : "Error interno en el servidor"});
+    }
+}
+
+export const UpdateDoctorProfilePicController = async (req: Request, res: Response) => { 
+    try {
+        const {ID,fotoUrl} = req.body
+        const updateDoctorProfile = await service.UpdateDoctorProfilePic(ID,fotoUrl);
+
+        if (updateDoctorProfile.update) {
+            res.status(202).json({
+                message: updateDoctorProfile.status
+            })
+        } else {
+            res.status(404).json({
+                message : updateDoctorProfile.status
+            })  
+        }
+    } catch (error) {
+        res.status(505).json({message: "Error interno en el servidor"})
     }
 }

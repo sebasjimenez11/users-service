@@ -23,7 +23,6 @@ const validateToken = async (req: Request, res: Response, next: NextFunction) =>
         req.body.ID = decoden.data.ID;
         req.body.tokenRol = decoden.data.rol;
         next();
-
     } catch (error) {
         return res.status(403).json(
           { status: 'Unauthorized' }

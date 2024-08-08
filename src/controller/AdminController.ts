@@ -29,4 +29,21 @@ export const updateProfileAdminController = async (req: Request, res: Response) 
     }
 }
 
+export const UpdateAdminProfilePicController = async (req: Request, res: Response) => { 
+    try {
+        const {ID,fotoUrl} = req.body
+        const updateAdminProfile = await adminService.updateProfileAdminPic(ID,fotoUrl);
 
+        if (updateAdminProfile.update) {
+            res.status(202).json({
+                message: updateAdminProfile.status, 
+            })
+        } else {
+            res.status(404).json({
+                message : updateAdminProfile.status
+            })  
+        }
+    } catch (error) {
+        res.status(505).json({message: "Error interno en el servidor"})
+    }
+}

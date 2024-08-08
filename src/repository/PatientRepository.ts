@@ -69,4 +69,14 @@ export default class PatientRepository {
             return {update: false, status:error.message}
         }
     }
+
+    static async UpdatePatientProfilePic(ID:string, fotoUrl:string){
+        try {
+            await db.execute('CALL UpdatePatientProfilePic(?,?)',[ID,fotoUrl]);
+            return { status: "Patient profile picture updated successfully", update: true};
+        } catch (error) {
+            console.log(error);
+            return { status: error.message , update: false}
+        }
+    }
 }

@@ -72,3 +72,23 @@ export const updateProfilePatientController = async (req: Request, res: Response
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+export const UpdatePatientProfilePicController = async (req: Request, res: Response) => { 
+    try {
+        const {ID,fotoUrl} = req.body
+        const updatePatientProfile = await service.UpdatePatientProfilePic(ID,fotoUrl);
+
+        if (updatePatientProfile.update) {
+            res.status(202).json({
+                message: updatePatientProfile.status, 
+            })
+        } else {
+            res.status(404).json({
+                message : updatePatientProfile.status
+            })  
+        }
+    } catch (error) {
+        res.status(505).json({message: "Error interno en el servidor"})
+    }
+}
+

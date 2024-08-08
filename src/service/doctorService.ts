@@ -26,4 +26,8 @@ export default class DoctorService {
     async updateProfileDoctor(doctor:DoctorUpdateDto){
         return await doctorRepository.updateProfileDoctor(doctor);
     }
+
+    async UpdateDoctorProfilePic(ID:string, fotoUrl:string){
+        return await doctorRepository.UpdateDoctorProfilePic(ID, fotoUrl);
+    }
 }

@@ -19,7 +19,7 @@ export default class DoctorRepository {
                 doctor.valorCita, 
                 doctor.codigoEspc
             ]);
-            return { status: "Doctor registered successfully", register: true, Id: doctor.ID };
+            return { status: "Doctor registered successfully", register: true};
         } catch (error) {
             console.log(error);
             return { status: "Error registering doctor: " + error.message, register: false };
@@ -67,10 +67,20 @@ export default class DoctorRepository {
                 doctor.email, 
                 doctor.valorCita
             ]);
-            return { status: "Doctor profile updated successfully", update: true, Id: doctor.ID };
+            return { status: "Doctor profile updated successfully", update: true };
         } catch (error) {
             console.log(error);
             return { status: "Error updating doctor profile: " + error.message, update: false };
+        }
+    }
+
+    static async UpdateDoctorProfilePic(ID:string, fotoUrl:string){
+        try {
+            await db.execute('CALL UpdateDoctorProfilePic(?,?)',[ID,fotoUrl]);
+            return { status: "Doctor profile picture updated successfully", update: true };
+        } catch (error) {
+            console.log(error);
+            return { status: error.message , update: false}
         }
     }
 }

@@ -28,4 +28,14 @@ export default class AdminRepository {
             return { update: false, message: 'Failed to update admin profile: ' + error.message, data: error };
         }
     }
+
+    static async updateAdminProfilePic(ID:string, fotoUrl:string){
+        try {
+            await db.execute('CALL UpdateAdminProfilePic(?,?)',[ID,fotoUrl]);
+            return { status: "Admin profile picture updated successfully", update: true, Id: ID };
+        } catch (error) {
+            console.log(error);
+            return { status: error.message , update: false}
+        }
+    }
 }
