@@ -48,8 +48,8 @@ export default class DoctorRepository {
 
     static async getDoctorCatalog() {
         try {
-            const [rows] = await db.execute("SELECT * FROM vista_doctores");
-            return { message: 'Doctor catalog retrieved successfully', data: rows[0] };
+            const [rows] = await db.execute("SELECT * FROM vista_doctores WHERE estado = 'activo'");
+            return { message: 'Doctor catalog retrieved successfully', data: rows };
         } catch (error) {
             console.error('Error retrieving doctor catalog:', error);
             return { message: 'Failed to retrieve doctor catalog: ' + error.message, data: error };

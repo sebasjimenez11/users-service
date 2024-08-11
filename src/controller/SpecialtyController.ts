@@ -24,7 +24,7 @@ const controllerGetAllSpecialty = async (req: Request, res: Response): Promise<v
         const getAll = await service.getAll();
         res.status(202).json({
             message: "Especialidades obtenidas con éxito",
-            data: getAll.data
+            specialty: getAll.data
         });
     } catch (error) {
         console.error(error);
