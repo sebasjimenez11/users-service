@@ -29,7 +29,7 @@ export default class DoctorRepository {
     static async getAllDoctors() {
         try {
             const [rows] = await db.execute("CALL ListDoctors()");
-            return { message: 'Doctors retrieved successfully', data: rows[0] };
+            return { message: 'Doctors retrieved successfully', data: rows};
         } catch (error) {
             console.error('Error retrieving doctors:', error);
             return { message: 'Failed to retrieve doctors: ' + error.message, data: error };

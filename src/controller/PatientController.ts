@@ -24,7 +24,7 @@ export const registerPatientController = async (req: Request, res: Response) => 
 export const getAllPatientsController = async (req: Request, res: Response) => {
     try {
         const getAllPatients = await service.getAllPatients();
-
+        
         if (getAllPatients.data) {
             res.status(200).json({
                 message: 'Patients retrieved successfully',
@@ -41,12 +41,12 @@ export const getAllPatientsController = async (req: Request, res: Response) => {
 
 export const getPatientByEmailController = async (req: Request, res: Response) => {
     try {
-        const getPatient = await service.getPacienteByEmail(req.body.email);
+        const getPatient = await service.getPacienteByEmail(req.body.ID);
 
         if (getPatient.data) {
             res.status(200).json({
                 message: 'Patient retrieved successfully',
-                data: getPatient.data
+                patient: getPatient.data
             });
         } else {
             res.status(404).json({ message: 'Patient not found' });
