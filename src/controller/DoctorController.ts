@@ -53,7 +53,6 @@ export const getDoctorByIdController = async (req: Request, res: Response) => {
 export const getDoctorCatalogController = async (req: Request, res: Response) => {
     try {
         const getDoctorCatalog = await service.getDoctorCatalog();
-        console.log(getDoctorCatalog.data);
         res.status(200).json({doctors : getDoctorCatalog.data})
     } catch (error) {
         console.log(error);
