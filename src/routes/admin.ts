@@ -14,7 +14,7 @@ const router = Router();
 
 router.get('/profile', validateToken, isAdmin, getAdminByIdController);
 router.put('/updateProfile', adminUpdateValidate(), handleValidationErrors ,validateToken, isAdmin, updateProfileAdminController)
-router.patch('/updatePhoto', validateToken, isAdmin, imageUploadMiddleware, UpdateAdminProfilePicController);
+router.patch('/updatePhoto', validateToken, isAdmin, imageUploadMiddleware(), UpdateAdminProfilePicController);
 
 export default router;  
 

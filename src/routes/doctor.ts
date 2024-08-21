@@ -16,7 +16,7 @@ import imageUploadMiddleware from "../middleware/imageUploadMiddleware";
 
 const router = Router();
 
-router.post('/register',validateToken, isAdmin,doctorValidator(), validationResult, imageUploadMiddleware ,registerDoctorController);
+router.post('/register',validateToken, isAdmin,imageUploadMiddleware(doctorValidator()) ,registerDoctorController);
 router.get('/profile', validateToken, isDoctor, getDoctorByIdController);
 router.get('/catalog', getDoctorCatalogController);
 router.get('/doctors', validateToken, isAdmin, getAllDoctorsController);

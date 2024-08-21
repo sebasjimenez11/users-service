@@ -18,7 +18,7 @@ router.post('/register',  validationRegisterPatient(),validationResult,registerP
 router.get('/profile', validateToken, isPatient, getPatientByEmailController);
 router.get('/patients', validateToken, isAdminOrDoctor, getAllPatientsController);
 router.put('/updateProfile',validationUpdatePatient(),validationResult,validateToken,isPatient, updateProfilePatientController);
-router.patch('/updatePhoto',validateToken, isPatient, imageUploadMiddleware, UpdatePatientProfilePicController);
+router.patch('/updatePhoto',validateToken, isPatient, imageUploadMiddleware(), UpdatePatientProfilePicController);
 
 export default router;
 
