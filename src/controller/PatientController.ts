@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import patientService from "../service/patientService";
 import PatientDto from "../dto/patient/Patient";
 import PatientUpdateDto from "../dto/patient/PatientUpdate";
+import creationEmail from "../helpers/creationEmail"
+import azuereShippingEmail from "../helpers/shippingEmail";
 
 const service = new patientService();
 
@@ -9,6 +11,8 @@ export const registerPatientController = async (req: Request, res: Response) => 
     try {
         const { documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol } = req.body;
         const register = await service.registerPatient(new PatientDto(documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol));
+
+        const shippingEmail = await azuereShippingEmail(creationEmail('welcome',register.email));
 
         if (register.register) {
             res.status(202).json({ message: register.status });

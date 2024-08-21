@@ -12,3 +12,4 @@ export const dominiosPermitidos: string[] = [
     'protonmail.com',
     'gmx.com'
 ];
+

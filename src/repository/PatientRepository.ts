@@ -5,8 +5,7 @@ import db from "../config/configBd"
 export default class PatientRepository {
 
         static async Register(patient:PatientDto){
-            try {
-                console.log(patient.tipoDoc);   
+            try {  
                 await db.execute('CALL InsertPatient(?,?,?,?,?,?,?,?,?)',
                 [
                     patient.ID,  
@@ -20,7 +19,7 @@ export default class PatientRepository {
                     patient.password
                 ]);
 
-                return {register: true,status: "user inserted correctly", Id: patient.ID}
+                return {register: true,status: "user inserted correctly", email: patient.email}
             } catch (error) {
                 console.log(error);
                 return {register: false, status:error}
