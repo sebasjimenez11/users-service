@@ -1,9 +1,9 @@
 import axios from 'axios';
 import EmailDto from '../dto/email/EmailDto';
 
-const azuereShippingEmail = async (email: EmailDto)=>{
+const azuereShippingEmail = (email: EmailDto)=>{
     try {
-        const response = await axios.post('https://serviciomensajeria.azurewebsites.net/api/enviocorreos',{
+        const response = axios.post('https://serviciomensajeria.azurewebsites.net/api/enviocorreos',{
             message: email.message,
             buttonUrl: email.buttonUrl,
             title: email.title,

@@ -12,9 +12,8 @@ export const registerPatientController = async (req: Request, res: Response) => 
         const { documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol } = req.body;
         const register = await service.registerPatient(new PatientDto(documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol));
 
-        const shippingEmail = await azuereShippingEmail(creationEmail('welcome',register.email));
-
-        if (register.register) {
+        if (register.register) { 
+            azuereShippingEmail(creationEmail('welcome',register.email));
             res.status(202).json({ message: register.status });
         } else {
             res.status(404).json({ message: register.status });
