@@ -7,4 +7,5 @@ const router = Router();
 
 router.post('/login',validateAuht(), validationResult ,AuhtController);
 
+
 export default router;

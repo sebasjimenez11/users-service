@@ -2,13 +2,16 @@ export default class AuhtDto {
     private _document ?: string;
     private _email ?: string;
     private _password : string;
+    private _rol: string;
 
     constructor(
         password: string,
+        rol: string,
         document?: string,
         email?: string
     ){
         this.document = document;
+        this.rol = rol
         this.email = email;
         this.password = password;
     }
@@ -17,8 +20,16 @@ export default class AuhtDto {
         return this._document;
     }
 
-    set document(document:string){
-        this._document = document;
+    set document(rol:string){
+        this._document = rol;
+    }
+
+    get rol(): string{
+        return this._rol;
+    }
+
+    set rol(rol:string){
+        this._rol = rol;
     }
 
     get email():string{

@@ -5,8 +5,8 @@ import AuhtService from "../service/authService";
 
 const controller = async (req: Request, res: Response) => {
     try {
-        const { password, document, email } = req.body;
-        const login = await new AuhtService().auht(new AuhtDto(password, document, email));
+        const { password, profile, document, email } = req.body;
+        const login = await new AuhtService().auht(new AuhtDto(password, profile, document, email));
         if (login.logged) {
             res.status(202).json({
                 message: login.message, 
