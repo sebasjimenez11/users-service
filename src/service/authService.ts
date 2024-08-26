@@ -2,9 +2,10 @@ import AuhtRepository from "../repository/AuthRepository";
 import AuhtDto from "../dto/auht/Auht";
 import generateToken from "../helpers/generateToken";
 
-export default class AuhtService {
-    async auht(auht:AuhtDto){
-        const login = await AuhtRepository.login(auht);
+export default class AuthService {
+    private repository = new AuhtRepository();
+    async login(auht:AuhtDto){
+        const login = await this.repository.login(auht);
         if (login?.logged) {
             return {
                 logged: login.logged,
