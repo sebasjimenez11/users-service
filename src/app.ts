@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import auht from './routes/auth';
-import patient from './routes/patient';
-import admin from './routes/admin';
-import doctor from './routes/doctor';
-import specialty from './routes/specialty';
+import auht from './routes/authRouter';
+import patient from './routes/patientRouter';
+import admin from './routes/adminRouter';
+import doctor from './routes/doctorRouter';
+import specialty from './routes/specialtyRouter';
 
 dotenv.config(); 
 

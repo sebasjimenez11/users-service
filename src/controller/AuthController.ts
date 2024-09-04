@@ -28,4 +28,9 @@ export default class AuthController {
         }
     }
     
+
+    recoveryPassword = async (req: Request, res: Response)=>{
+        
+    }
+
 }

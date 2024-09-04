@@ -7,6 +7,6 @@ const router = Router();
 const controller = new AuthController()
 
 router.post('/login',validateAuth(), validationResult ,controller.login);
-
+router.post('recovery-password', )
 
 export default router;

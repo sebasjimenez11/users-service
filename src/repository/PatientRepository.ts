@@ -29,7 +29,7 @@ export default class PatientRepository {
     static async getAllPatients(){
         try {
             const [rows] = await db.execute('CALL ListPatients()');
-            return {message: '', data: rows};
+            return {message: '', data: rows[0]};
         } catch (error) {
             console.log(error);
             return {message: error.message, data: null};

@@ -13,7 +13,6 @@ export const registerPatientController = async (req: Request, res: Response) => 
         const register = await service.registerPatient(new PatientDto(documentoPac, tipoDoc, nombre, apellido, email, password, fechaNac, rol));
 
         if (register.register) { 
-            azuereShippingEmail(creationEmail('welcome',register.email));
             res.status(202).json({ message: register.status });
         } else {
             res.status(404).json({ message: register.status });
@@ -31,7 +30,7 @@ export const getAllPatientsController = async (req: Request, res: Response) => {
         if (getAllPatients.data) {
             res.status(200).json({
                 message: 'Patients retrieved successfully',
-                data: getAllPatients.data
+                patients: getAllPatients.data
             });
         } else {
             res.status(204).json({ message: 'No patients found' });
