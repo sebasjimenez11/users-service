@@ -8,7 +8,7 @@
     "start": "node dist/app.js",
     "build": "tsc && yarn run copy-certs",
     "copy-certs": "cpx ./src/config/certs/**/* ./dist/config/certs",
-    "test": "jest --watchAll"
+    "prestart": "yarn run build" 
   },
   "dependencies": {
     "@azure/storage-blob": "^12.24.0",
