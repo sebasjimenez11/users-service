@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import * as fs from 'fs';
 import * as path from 'path';
 
-const certPath = path.resolve(__dirname, './config/certs/DigiCertGlobalRootG2.crt.pem'); 
+const certPath = path.resolve(__dirname, './certs/DigiCertGlobalRootG2.crt.pem');
 
 dotenv.config();
 
