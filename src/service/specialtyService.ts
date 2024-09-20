@@ -5,10 +5,14 @@ import SpecialtyRepository from "../repository/SpecialtyRepository";
 export default class specialtyService{
 
     async create(specialtyDto: SpecialtyDto){
-        return SpecialtyRepository.createSpecialty(specialtyDto);
+        return await SpecialtyRepository.createSpecialty(specialtyDto);
     }
 
     async getAll(){
-        return SpecialtyRepository.getAllSpecialties();
+        return await SpecialtyRepository.getAllSpecialties();
+    }
+
+    async updateStatus(estado: string, codigoEspc: string){
+        return await SpecialtyRepository.updateStatus(estado, codigoEspc);
     }
 }

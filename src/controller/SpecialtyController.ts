@@ -32,4 +32,23 @@ const controllerGetAllSpecialty = async (req: Request, res: Response): Promise<v
     }
 };
 
-export { controllerRegister, controllerGetAllSpecialty };
+const controllerUpdateSpecialty = async (req: Request, res: Response)=>{
+    try {
+        const codigoEspc = req.body.codigoEspc;
+        const estado = req.body.estado;
+
+        const updateStatus = await service.updateStatus(estado, codigoEspc);
+
+        if (updateStatus.update) {
+            res.status(202).json({
+                message: updateStatus.message
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export { controllerRegister, controllerGetAllSpecialty, controllerUpdateSpecialty};

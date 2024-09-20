@@ -22,5 +22,19 @@ export default class SpecialtyRepository {
             return { message: 'Failed to retrieve specialties', data: error };
         }
     }
+
+    static async updateStatus(estado: string, codigoEspc: string) {
+        try {
+            const [row] = await db.execute('UPDATE especialidad SET Estado = ? WHERE Codigo_Espc = ?', [estado, codigoEspc]);
+    
+            return {
+                update: true,
+                message: 'Actualización de estado exitosa'
+            };
+        } catch (error) {
+            throw new Error('Error actualizando el estado: ' + error.message);
+        }
+    }
+    
 }
  
