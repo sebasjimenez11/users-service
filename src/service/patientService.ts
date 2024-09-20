@@ -35,10 +35,12 @@ export default class patientService {
         try {
             const update = await PatientRepository.updateProfilePatient(patient);
             if (update.update) {
-                azuereShippingEmail(creationEmail('',patient.email));
+                azuereShippingEmail(creationEmail('dataUpdate',patient.email));
+                console.log(update);
                 return update;
             } return update;
         } catch (error) {
+            console.log(error.message);
             
         }
     }

@@ -8,6 +8,7 @@ import patient from './routes/patientRouter';
 import admin from './routes/adminRouter';
 import doctor from './routes/doctorRouter';
 import specialty from './routes/specialtyRouter';
+import samBot from './routes/chatRouter';
 
 dotenv.config(); 
 
@@ -20,6 +21,7 @@ app.use('/patient', patient);
 app.use('/doctor', doctor);
 app.use('/admin', admin);
 app.use('/specialty', specialty);
+app.use('/samBot', samBot)
 
 const PORT = process.env.PORT || 10101;
 

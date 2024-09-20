@@ -11,7 +11,7 @@ export const messageEmail = {
 export const buttonUrlValue = {
     welcome: "http://localhost:4200/",
     dataUpdate: "http://localhost:4200/perfil",
-    passwordRecovery: (token: string) => `http://localhost:4200/recovery-password?token=${token}`,
+    passwordRecovery: (token: string) => `http://localhost:4200/new-password?token=${token}`,
     passwordUpdate: "http://localhost:4200/perfil",
 }
 
@@ -30,11 +30,11 @@ export const titleValue = {
 }
 
 export const imgUrlValue = {
-    welcome: "https://alamacenimagenes.blob.core.windows.net/fotoperfil/agendaminetoCItas.jpg",
+    welcome: "https://alamacenimagenes.blob.core.windows.net/fotosmedicos/6-removebg-preview.png",
     
-    dataUpdate: "https://alamacenimagenes.blob.core.windows.net/fotoperfil/actualizacion.jpg",
+    dataUpdate: "https://alamacenimagenes.blob.core.windows.net/fotosmedicos/Azul_y_Verde_Animales_6_Viñetas_Historieta-removebg-preview (1).png",
     
-    passwordRecovery: "https://alamacenimagenes.blob.core.windows.net/fotoperfil/recovery.jpg",
+    passwordRecovery: "https://alamacenimagenes.blob.core.windows.net/fotosmedicos/7-removebg-preview.png",
     
-    passwordUpdate: "https://alamacenimagenes.blob.core.windows.net/fotoperfil/passwordUpdate.jpg",
+    passwordUpdate: "https://alamacenimagenes.blob.core.windows.net/fotosmedicos/Azul_y_Verde_Animales_6_Viñetas_Historieta-removebg-preview (1).png",
 }

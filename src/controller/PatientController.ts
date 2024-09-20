@@ -61,8 +61,8 @@ export const getPatientByEmailController = async (req: Request, res: Response) =
 
 export const updateProfilePatientController = async (req: Request, res: Response) => {
     try {
-        const { Id, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion } = req.body;
-        const update = await service.updateProfilePatient(new PatientUpdateDto(Id, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion));
+        const { ID, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion } = req.body;
+        const update = await service.updateProfilePatient(new PatientUpdateDto(ID, documentoPac, tipoDoc, nombre, apellido, email, fechaNac, telefono, direccion));
 
         if (update.update) {
             res.status(200).json({ message: update.status });

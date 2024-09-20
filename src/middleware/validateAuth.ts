@@ -2,7 +2,7 @@ import { body } from "express-validator";
 import { dominiosPermitidos } from "../config/common/constants/constants";
 
 
-const validateAuht = () => {
+export const validateAuht = () => {
     return [
         body("password")
             .isLength({ min: 8 })
@@ -42,4 +42,18 @@ const validateAuht = () => {
     ];
 }
 
-export default validateAuht;
+export const validateRecovery = () => {
+    return [
+        body('email')
+            .notEmpty()
+            .isEmail()
+            .withMessage('Debe ser un correo electrónico válido')
+            .custom(value => {
+                const dominio = value.split('@')[1];
+                if (!dominiosPermitidos.includes(dominio)) {
+                    throw new Error('Dominio de correo no permitido');
+                }
+                return true;
+            })
+    ]
+} 

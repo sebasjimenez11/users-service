@@ -30,7 +30,17 @@ export default class AuthController {
     
 
     recoveryPassword = async (req: Request, res: Response)=>{
-        
+        try {
+            const email = req.body.email ;
+            const recovery = await this.service.recoveryPassword(email);
+            if (recovery.recovery) {
+                res.status(200).json({message: recovery.message})
+            } else {
+                res.status(403).json({message: recovery.message})
+            }
+        } catch (error) {
+            res.status(505).json({message : error.message})
+        }
     }
 
 }
